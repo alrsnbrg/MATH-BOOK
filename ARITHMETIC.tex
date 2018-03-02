@@ -1,0 +1,1937 @@
+%version of 03-02-18
+
+\chapter{ARITHMETIC}
+\label{ch:arithmetic}
+
+Many, perhaps most, of us take for granted the brilliant notations
+that have been developed for the myriad arithmetic constructs that we
+use daily.  Our mathematical ancestors have bequeathed us notations
+that are not only perspicuous but also convenient for computing and
+for discovering and verifying new mathematical truths.  This chapter
+is dedicated to sharing this legacy with the reader.
+
+\section{Numbers and Numerals}
+\label{sec:numbers-numerals}
+
+Every reader will be familiar with the notion of {\it number} and with
+the familiar strings, called {\it numerals}, that name numbers within
+positional number systems.\index{numbers vs.~numerals}
+\begin{quote}
+Numbers and numerals embody what is certainly the most familiar
+instance of a very important dichotomy that pervades our intellectual
+lives: the distinction between objects and their names:
+
+{\em Numbers are objects.  Numerals are the names we use to refer to
+  and manipulate numbers.}
+
+This is a crucially important distinction!  You can ``touch'' a
+numeral: break it into pieces, combine two (or more) numerals via a
+large range of operations.  Numbers are intangible abstractions: you
+cannot compute with them.
+\end{quote}
+In our daily commerce, we typically deal with numerals formed within a
+{\it base-$b$ positional number system,}\index{numerals in a base-$b$
+  positional number system}
+%
+i.e., by strings of {\it digits}, often embellished with other
+symbols, such as a {\em radix point}.  We describe such systems in
+detail in Section~\ref{sec:Numerals}.A.  For now, we settle for a few
+examples: $123456789$ (base $10$, or, {\it decimal}), $10111.001$
+(base $2$, or, {\it binary}), or $0.1267 \times 8^{24}$ (base $8$, or,
+{\it octal}).\footnote{The use of a period as the radix point is a US
+  convention; in much of Europe, a comma denotes the radix point.}
+
+
+\subsection{Numbers}\index{numbers}
+\label{sec:numbers}
+
+We begin our study of arithmetic notions with a short taxonomy of
+numbers, the objects that arithmetic was invented to explicate and
+exploit.  Although we assume that the reader is familiar with the most
+common classes of numbers, we do spend some time highlighting
+important features of each class, partly, at least, in the hope of
+heightening the reader's interest in this most basic object of
+mathematical discourse.
+
+We present the four most common classes of numbers in what is almost
+certainly the chronological order of their discovery/invention.
+\begin{quote}
+Did humans invent these classes of numbers to fill specific needs, or
+did we just discover their pre-existing selves as needs prompted us to
+search for them?  The great German mathematician Leopold Kronecker, as
+cited on page 477 of \cite{Bell86}, shared his viewpoint on this
+question: ``God made the integers; all else is the work of man.''
+\end{quote}
+A pleasing narrative can be fabricated to account for our multi-class
+system of numbers.  In the beginning, the story goes, we needed to
+count things (sheep, bottles of oil, weapons, \ldots), and the
+positive {\it integers}\index{number!integer} were discovered.  As
+accounting practices matured, we needed to augment this class with
+both zero\index{number!zero ($0$)} ($0$) and the negative
+integers\index{number!negative}---and the full class of integers was
+born.  As society developed, we had to start sharing subdivisible
+materials, so we needed to invent the {\it rational
+  numbers}.\index{number!rational} Happily for the mathematically
+inclined, the rational numbers could be developed in a way that
+allowed one to view an integer as a special type of rational.
+\begin{quote}
+This quest for a single encompassing framework rather than a set of
+isolated concepts is a hallmark of mathematical thinking.
+\end{quote}
+As the ancient Greeks (so the story goes) were inventing geometry and
+its place within architecture, they encountered the uncomfortable fact
+that the lengths of portions of eminently buildable structures were
+not ``measurable,'' by which they meant ``not rational.''  The poster
+child for this phenomenon was the hypotenuse of the isosceles right
+triangle with unit-length legs.  As a response to this discomfort, the
+{\it real numbers}\index{number!real} were invented.  Once again,
+happily, one could develop the real numbers in a way that allowed one
+to view a rational number as a special type of real number.  Time went
+on, and mathematics matured.  Polynomials\index{polynomial} and their
+roots\index{polynomial!root}\footnote{A number $r$ is a {\it root} of
+  a polynomial $P(x)$ if $P(r) =0$.}~were discovered, together with
+the next source of discomfort.  To understand this discomfort, one
+must note that, since the invention of the real numbers, every
+polynomial $P_m(x)\ \eqdef \ x^2 - m$, where $m$ is a nonnegative real
+number, had two roots, called, respectively, $+\sqrt{m}$ and
+$-\sqrt{m}$.  But---here is the source of discomfort---{\em the
+  polynomial $P_m(x)$ had no roots when $m$ was negative, even a
+  negative \underline{integer}}.  The response this time resided in
+the invention of a new {\it imaginary} number,\index{number!imaginary}
+called $i$,\index{imaginary number $i = \sqrt{-1}$} that was a root of
+the polynomial $P_{-1}(x) = x^2 +1$; $i$ was often defined via the
+equation, $i = \sqrt{-1}$; easily, $-i$ is also a root of
+$P_{-1}(x)$.  By combining the imaginary number $i$ with the real
+number system, the {\it complex numbers}\index{number!complex} were
+born.
+
+The reader is possibly anticipating a new ``discomfort'' leading to an
+new augmentation of our number system, but, no, the story is now
+complete, in the sense expressed in the {\it Fundamental Theorem of
+  Algebra}\index{Fundamental Theorem of Algebra}, which asserts:
+
+\begin{theorem}[{\bf The Fundamental Theorem of Algebra}]
+\label{thm:fund-thm-algebra}
+Every polynomial of degree $n$ with complex coefficients has $n$ roots
+over the complex numbers.
+\end{theorem}
+
+We return to the later to the Theorem and its applications and
+implications.  For now, though, it completes our historical tour, so
+we can finally begin to get acquainted with our four classes of
+numbers.
+
+\subsubsection{The integers}
+\label{sec:integers}
+
+The most basic class of numbers are the {\it
+  integers}\index{number!integer} (or, {\it whole
+  numbers},\index{whole numbers} or, {\em counting
+  numbers}).\index{counting numbers}  These are certainly the numbers
+that our prehistoric ancestors employed in the earliest days of our
+species.
+
+\medskip
+
+\addcontentsline{toc}{paragraph}{A. Integers and the number line}
+\noindent{\small\sf A. Integers and the number line.}\index{number!the
+  number line}
+%
+We survey a number of the most important properties of the set
+$\Z$\index{$\Z$: the set of all integers} that comprises {\em all
+  integers} (the positive and negative integers and zero ($0$)) and
+the set $\N$\index{$\N$: the set of nonnegative integers} that
+comprises the {\em nonnegative integers} (the positive integers and
+$0$).  We estimate a property's importance from the vantage points of
+both mathematics and its manifold applications.
+
+Several essential properties of $\N$ and $\Z$ are consequences of the
+sets' behavior under their natural order relations: strong ($<$) and
+weak ($\leq$) and their converses.
+\begin{itemize}
+\item
+The set $\Z$ is {\em totally ordered}\index{number!integer!total
+  order}\index{integer!total order}, also termed {\em linearly
+  ordered}\index{number!integer!linear ordering}\index{integer!linear
+  ordering}.
+
+\smallskip
+
+This fact is embodied in the {\em Trichotomy Laws for
+  integers}.\index{number!integer!Trichotomy
+  Laws}\index{integer!Trichotomy Laws}\index{Trichotomy Laws}
+
+\medskip
+
+{\it The Trichotomy laws for integers}. \\
+%
+(a)
+%
+{\it For each integer $a \in \Z$, precisely one of the following is true.}
+\[
+(1) \ \mbox{ $a$ equals $0$:} \ a=0 \ \ \ \
+(2) \ \mbox{ $a$ is {\em positive}:} \ a>0 \ \ \ \
+(3) \ \mbox{ $a$ is {\em negative}:} \ a<0
+\]
+
+Consequently, $\Z$ can be visualized via the ($2$-way infinite) number
+line: $\ldots, -2, -1, 0, 1, 2, \ldots$.\index{number!the number line}
+
+Analogously, $\N$ can be visualized via the ($1$-way infinite) number
+line: $0, 1, 2, \ldots$.
+
+\medskip
+
+(b)
+%
+{\it For any integers $a, b \in \Z$, precisely one of the following is
+  true.}
+\[ (1) \ a=b \ \ \ \ \ \ \ (2) \ a<b \ \ \ \ \ \ \ (3) \ a>b \]
+
+\item
+The set $\N$ is {\it well-ordered}.\index{number!nonnegative
+  integers!well-ordering}\index{nonnegative!integers!well-ordering}
+
+\medskip
+
+{\it The Well-ordering law for nonnegative integers}.
+%
+{\it Every subset of $\N$ has a smallest element (under the ordering
+  $<$).}
+
+\medskip
+
+\item
+The set $\Z$ obeys the {\it ``Between''
+  Laws}\index{number!integer!''Between'' laws}\index{integer!''Between''
+  laws}
+
+\medskip
+
+{\it The ``Between'' laws for integers}. \\
+%
+{\it For any integers $a, b \in \Z$, there are finitely many $c \in
+  \Z$ such that $a < c < b$.}
+
+\smallskip
+
+Any such $c \in \Z$ is {\em between} $a$ and $b$, whence the name of
+the law.
+\end{itemize}
+
+\medskip
+
+\addcontentsline{toc}{paragraph}{B. Prime numbers}
+\noindent {\small\sf B. Prime numbers}\index{number!prime numbers}
+%
+We single out a subclass of the positive integers whose mathematical
+importance has been recognized for millennia but which have found
+important applications (e.g., within the domain of computer security)
+mainly within the past several decades.
+
+Positive integer $p$ {\it divides} positive integer $n$ (or, {\it is a
+  divisor of $n$})\index{number!integer!divisor} if there is a
+positive integer $q$ such that $n = p \cdot q$.  Equivalently, we say
+that $n$ {\it is divisible by}\index{number!integer!divisibility} $p$.
+Thus, every positive integer $n$ is divisible by $p=1$ ($q=n$) and by
+$p=n$ ($q=1$).
+
+The class of integers we single out is defined by its divisibility
+characteristics.
+
+An integer $p >1$ is {\it prime}\index{number!integer!prime
+  number}\index{number!integer!prime}\index{prime
+  number}\index{integer!prime number}\index{integer!prime}
+if its {\em only} positive integer divisors are $1$ (which divides
+every integer) and itself (which is always a divisor).
+\begin{quote}
+We usually use the shorthand assertion, ``$p$ is a prime,'' instead of
+the longer, but equivalent, ``$p$ is a prime integer.''
+\end{quote}
+
+A very important way to classify a positive integer $n$ is to list the
+primes that divide it, coupling each such prime $p$ with its {\it
+  multiplicity}, i.e., the number of times that $p$ divides $n$.  Let
+$p_1, p_2, \ldots, p_r$ be the distinct primes that divide $n$, and
+let each $p_i$ divide $n$ with multiplicity $m_i$.  The {\it prime
+  factorization}\index{prime factorization}\index{integer!prime
+  factorization}\index{number!integer!prime factorization}
+%
+of $n$ is the product $p_1^{m_1} \times p_2^{m_2} \times \cdots \times
+p_r^{m_r}$; note that this product satisfies the equation
+\begin{equation}
+\label{eq:prime-factorization}
+n \ = \ p_1^{m_1} \times p_2^{m_2} \times \cdots \times p_r^{m_r}
+\end{equation}
+
+When writing an integer $n$'s prime factorization, it is traditional
+to list the primes $p_1, p_2, \ldots, p_r$ in increasing order, i.e.,
+so that $p_1 < p_2 < \cdots < p_r$.
+
+\noindent
+A positive integer $n$ is totally characterized by its canonical prime
+factorization, as attested to by the following classical theorem,
+which we cite without proof.
+
+\begin{theorem}\index{Fundamental Theorem of Arithmetic}
+\label{thm:Fund-Thm-Arith}
+The canonical prime factorization of every positive integer is unique.
+\end{theorem}
+
+This theorem has been known for millennia and has been honored with
+the title {\em The Fundamental Theorem of
+  Arithmetic}.\index{Fundamental Theorem of Arithmetic}
+
+One very important application of Theorem~\ref{thm:Fund-Thm-Arith} is
+as a mechanism for {\em encoding}\index{number!using the Fundamental
+  Theorem of Arithmetic for encoding}\index{encoding sequences via the
+  Fundamental Theorem of Arithmetic}
+%
+sequences of positive integers as single integers!  This works as
+follows.  Consider the (infinite) ordered sequence of {\em all primes:}
+\[ (q_1 = 2), (q_2 = 3), (q_3 = 5), \ldots  \]
+Let
+\begin{equation}
+\label{eq:sequence-vec-s}
+\vec{s} \ = \ \langle m_1, m_2, \ldots, m_k \rangle
+\end{equation}
+be an arbitrary sequence of positive integers.  Then
+Theorem~\ref{thm:Fund-Thm-Arith} assures us that the (single) positive
+integer
+\[ 
+\iota(\vec{s}) \ \eqdef \ q_1^{m_1} \times q_2^{m_2} \times \cdots
+\times q_k^{m_k}
+\]
+is a (uniquely decodable) integer-representation of sequence $\vec{s}$.
+
+We return to this idea of encoding-via-integers in a later chapter.
+
+\subsubsection{The rational numbers}
+\label{sec:rationals}
+
+Each augmentation of our number system throughout history has been a
+response to a deficiency with the then-current system.  The deficiency
+that instigated the introduction of the rational numbers was the
+frequency with which a given integer $q$ does not divide another given
+integer $p$.  This fact meant that the operation of multiplication
+could often not be ``undone'', or ``inverted'', because division, the
+operation that would accomplish the undoing/inverting, would be a {\em
+  partial operation:} There are pairs of integers neither of which
+divides the other.  The defining characteristic of the expanded system
+is that, within it, every nonzero number divides every number.
+
+The set $\Q$ of {\it rational} numbers\index{number!rational}
+\index{$\Q$: the set of rational numbers}
+consists of the number $0$, plus the ratios $p/q$ of all nonzero
+integers:
+\[ \Q \ \eqdef \ \{0\} \ \cup \ \left\{ p/q \ | \ p, q \in \Z
+\setminus \{0\} \right\}
+\]
+Each element of $\Q$ is called a {\it rational} number;
+\index{number!rational} 
+each {\em nonzero} rational number $p/q$ is often called a {\em
+  fraction},
+\index{number!fraction}
+especially when $q > p$.
+
+An alternative, mathematically more advanced, way of defining the set
+$\Q$ is to view it as the smallest set of numbers that contains the
+integers, i.e., the set $\Z$, and is {\it closed under the operation
+  of division.}\index{algebraic closure} The word ``closed'' here
+means that, given any two numbers in $\Q$: $r$ and $s \neq 0$, their
+quotient $r/s$ belongs to $\Q$.
+
+Numerous notations have been developed for ``naming'' rational numbers
+in terms of the integers they are ``built from.''  Most of these
+notations continue our custom of employing the symbol ``$0$'' for the
+number $0$.  For the nonzero elements of $\Q$, we traditionally employ
+some notation for the operation of division and denote the
+\begin{equation}
+\label{eq:fraction}
+ p/q \ \ \ \mbox{ or } \ \ \ {p \over q} \ \ \ \mbox{ or } \ \ \ p
+ \div q
+\end{equation}
+The integer $p$ in any of the expressions in (\ref{eq:fraction}) is
+the {\it numerator}
+\index{number!rational!numerator}
+\index{number!fraction!numerator}
+of the fraction; the integer $q$ is the {\it denominator}.
+\index{number!rational!denominator}
+\index{number!fractions!denominator}
+
+Obviously, every integer $n$ can be viewed as a rational
+number, by letting $n$ be the numerator of a fraction whose
+denominator is $1$; i.e., $n = n/1$.  Easily, this encoding preserves
+the special character of the numbers $0$ and $1$, because $0/1 = 0$
+and $1/1 = 1$.
+
+
+\subsubsection{The real numbers}
+\label{sec:reals}
+
+Each subsequent augmentation of our system of numbers inevitably gets
+more complicated than the last: one solves the easy problems first.
+The deficiency in the system of real numbers harkens back to
+historical time, roughly $2 {1 \over 2}$ millennia ago.  The ancient
+Egyptians were prodigious builders who mastered truly sophisticated
+mathematics in order to engineer their temples and pyramids.  The
+ancient Greeks perpetuated this engineering tradition, but they added
+to it the ``soul'' of mathematics.
+
+Numbers were (literally) sacred objects to the Greeks, and they
+invented quite ``modern'' (to our perspective) ways of thinking about
+mathematical phenomena in order to understand {\em why} certain facts
+were true, in addition to knowing {\em that} they were true.  One
+intellectual project in this spirit had to do with the way they
+designed contructions.  They were attracted to geometric contructions
+that could be accomplished using only {\em straight-edges and
+  compasses}.  And---most relevant to our story---they preferred that
+the relative lengths of linear sections of their structures be {\em
+  commensurable},
+\index{number!integer!commensurable pairs of integers}
+in the following sense.  {\em Integers $x,y \in \N$ are {\em
+    commensurable} if there exist $a, b \in \N$ such that}
+\[ ax \ = \ by \ \ \ \ \mbox{ or, equivalently, } \ \ \ \ x \ = \ {a
+  \over b} y.
+\]
+The desire to employ only commensurable pairs of integers, at least in
+moderately simple constructions, was shown to be impossible when one
+considered {\it the diagonal of the square with unit-length sides} or,
+equivalently, {\it the hypotenuse of the isosceles right triangle with
+  unit-length legs}.  In both situations, one encountered the unit
+lengths of the sides or legs of the structures, together with the {\em
+  noncommensurable} length of the diagonal or hypotenuse, which, in
+current terminology, is $\sqrt{2}$.  The Greek mathematicians, as
+reported by the renowned mathematician Euclid,\footnote{who wrote
+  extensively on this and related subjects.}~proved, using current
+terminology, that $\sqrt{2}$ is not rational.  (We rephrase the proof
+imminently, in Proposition~\ref{thm:sqrt(2)}.)  The conclusion from
+this proof is that the number system based on the rational numbers was
+inadequate.  In response, they augmented this system by introducing
+{\it surds} \index{number!surd} or, as we more commonly term them,
+{\it radicals}, \index{number!radical} beginning a trajectory that
+culminated in the real number system.  Since our intention has been to
+justify the journey along that trajectory, we leave our historical
+digression and turn to our real focus, the set $\R$ of {\it real
+  numbers}.\index{number!real}
+
+For any integer $b > 1$, the real numbers are the numbers that can be
+named by {em infinite} strings built out of the digits $\{0, 1,
+\ldots, b-1\}$;\footnote{This is not the traditional way that a
+  mathematician would define the class of real numbers, but it is
+  correct and adequate for thinking about the class.}~the resulting
+strings are called {\em $b$-ary numerals}.  There are a couple of ways
+to form $b$-ary numerals; we shall discuss some of the most common
+ones in Section~\ref{sec:Numerals}.  For now, we define real numbers
+as those that can be represented by a base-$b$ numeral, for some
+integer $b >1$.  Such a numeral has the form
+\begin{equation}
+\label{eq:real-numeral}
+\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
+. \beta_0 \beta_1 \beta_2 \cdots
+\end{equation}
+\index{positional number system!numerical value of numeral}
+and represents the (real) number
+\[
+\underline{\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
+. \beta_0 \beta_1 \beta_2 \cdots}
+\ \ \eqdef \ \
+\sum_{i=0}^n \alpha_i \cdot b^i
+\ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}.
+\]
+By prepending a ``negative sign'' (or, ``minus sign'') $-$ to a
+numeral or a number, one renders the thus-embellished entity as
+negative.
+
+The fact that every rational number (hence, also, every integer) is
+also a real number is manifest in the fact that integers and rationals
+can also be written as $b$-ary numerals as in (\ref{eq:real-numeral}).
+But with rational and integers, we are able to insist that their
+numerals have special forms.  We cite without proof the following
+classical results from the theory of arithmetic.  The result for
+integers is easily phrased.
+
+\begin{theorem}{Integers as real numbers}
+\label{thm:integer-real}
+A real number is an integer if, and only if, it can be represented by
+a {\em finite-length} numeral.\index{number!integer: real with a finite numeral}
+\end{theorem}
+
+The result for rationals needs an introductory definition.  An {\em
+  infinite} sequence of numbers $\Sigma$ is {\em ultimately
+  periodic}\index{ultimately periodic sequence} if there exist two
+{\em finite} sequences of numbers, $\Gamma$ and $\Delta$, such that
+$\Sigma$ can be written in the following form (spaces added to enhance
+legibility):
+\[ \Sigma \ = \ \Gamma \ \Delta \ \Delta \ \Delta \ \ldots 
+\ \Delta \ \ldots
+\]
+The intention here is that the finite sequence $\Delta$ is repeated
+{\it ad infinitum}.
+
+
+\begin{theorem}{Rationals as real numbers}
+\label{thm:rational-real}
+\noindent
+A real number is rational if, and only if, it can be represented by a
+numeral that is {\em ultimately periodic}.\index{number!rational:
+  real with an ultimately periodic numeral}
+\end{theorem}
+
+\noindent {\em A clarification.}
+%
+Note that two types of sequences of $0$s do not affect the value of
+the number represented by a numeral: (1) an {\em initial} sequence
+of $0$s to the {\em left} of the radix point and of all non-$0$
+digits; (2) a {\em terminal} sequence of $0$s to the {\em right} of
+the radix point and of all non-$0$ digits.
+
+One consequence of this fact is that we lose no generality by
+insisting that every numeral have the following form:
+
+\smallskip
+
+\hspace*{.15in}
+\begin{tabular}{l}
+a finite sequence of digits, followed by a radix point, followed by an
+infinite \\
+sequence of digits
+\end{tabular}
+
+Integers can then be singled out via numerals that have only $0$s to
+the right of the radix point.
+
+Theorems~\ref{thm:integer-real} and~\ref{thm:rational-real} show us
+that the three sets of numbers we have defined are a nested
+progression of successively more inclusive sets, in the sense that
+{\em every integer is a rational number} and {\em every rational
+  number is a real number}.  Those interested in the (philosophical)
+foundations of mathematics might quibble about the verb ``is'' in the
+highlighted sentences, but for all practical purposes, we can accept
+the sentences as written.
+
+\medskip
+
+We close this section by verifying the earlier-mentioned assertion
+about the non-commensurability of the side-length of a square with the
+length of its diagonal or, equivalently, the leg-length of an
+isosceles right triangle with the length of its hypotenuse.
+\index{The non-commensurabiliy of $\sqrt{2}$}
+%
+The following proof is a simple application of
+Theorem~\ref{thm:Fund-Thm-Arith}, which can only suggest the range of
+the theorem's applications.
+
+\begin{prop}
+\label{thm:sqrt(2)}
+The real number $\sqrt{2} = 2^{1/2}$ is not rational.
+\end{prop}
+
+\noindent {\it Verification}.
+%
+We prove the result by contradiction,\index{proof by contradition}
+a proof technique described in Chapter~\ref{sec:practical-logic}.
+
+Let us assume, for contradiction, that $\sqrt{2}$ is rational.  By
+definition, then $\sqrt{2}$ can be written as a fraction
+\[ \sqrt{2} \ = \ {a \over b} \]
+for positive integers $a$ and $b$.  In fact, we can also insist that
+$a$ and $b$ {\em share no common prime factor}.  For, if $a$ and $b$
+shared the prime factor $p$, then we would have $a = p \times c$ and
+$b = p \times d$.  In this case, though, we would have
+\[ \sqrt{2} \ = \ {a \over b} \ = \ \frac{p \times c}{p \times d}
+\ = \ {c \over d}.
+\]
+by cancellation of the common factor $p$.  We can eliminate further
+common prime factors if necessary until, finally, we find a fraction
+for $\sqrt{2}$ whose numerator and denominator share no common prime
+factor.  This must occur eventually because each elimination of a
+common factor leaves us with smaller integers, so the iterative
+elimination of common factors must terminate.
+
+Let us say that, finally,
+\begin{equation}
+\label{eq:sqrt2-1}
+\sqrt{2} \ = \ {k \over \ell}
+\end{equation}
+where $k$ and $\ell$ share no common prime factor.  Let us square both
+expressions in (\ref{eq:sqrt2-1}) and multiply both sides of the
+resulting equation by $\ell^2$.  We thereby discover that
+\begin{equation}
+\label{eq:sqrt2-2}
+2 \ell^2 \ = \ k^2.
+\end{equation}
+This rewriting exposes the fact that $k^2$ is {\em even},\index{integer!even}
+i.e., {\em divisible by $2$}.  But, Theorem~\ref{thm:Fund-Thm-Arith}
+tells us that {\em if $k^2$ is divisible by $2$, then so also is $k$}!
+This means that $k = 2m$ for some positive integer $m$, whoch allows
+us to rewrite (\ref{eq:sqrt2-2}) in the form
+\begin{equation}
+\label{eq:sqrt2-3}
+2 \ell^2 \ = \ k^2 \ = \ (2m)^2 \ = \ 4m^2.
+\end{equation}
+Hence, we can divide the first and last quantities in
+(\ref{eq:sqrt2-3}) by $2$, to discover that
+\[ \ell^2 \ = \ 2m^2. \]
+Repeating the invocation of Theorem~\ref{thm:Fund-Thm-Arith} now tells
+us that the integer $\ell$ must be even.
+
+We now see that {\em both $k$ and $\ell$ are even, i.e., divisible by
+  $2$}.  This contradicts our assumption that $k$ and $\ell$ share no
+common prime divisor!
+
+Since every step of our argument is ironclad---except for our
+assumption that $\sqrt{2}$ is rational, we conclude that that
+assumption is false!  The Proposition is verified!
+\qed
+
+
+\subsubsection{The complex numbers}
+\label{sec:complexes}
+
+$\C$ denotes the complex numbers
+
+
+\subsection{Order within the number system}
+\label{sec:order}
+
+One of one's biggest friends when reasoning about numbers resides in
+the concept of {\em order}.\index{number!ordering of numbers}
+
+**HERE-ORDER
+
+
+
+
+
+\subsection{Numerals}\index{numerals}
+\label{sec:Numerals}
+
+We can identify distinct families of {\em operational}
+numerals,\index{numerals!operational} i.e., numerals that allow one to
+do things such as perform arithmetic (add, multiply, etc.).
+
+**THOUGHTS*******
+series expansions, strings created by a positional number system, and
+hybrids built on positional systems such as ``scientific notation''.
+*************
+
+
+Of course, we are all familar with certain numbers that have {\em
+  non-operational} names that we use all the time.  Notable among
+these are (using terminology that anticipates future sections and
+chapters):
+\begin{itemize}
+\item
+$\pi$: the ratio of the circumference of a circle to its diameter;
+  $\pi \approx 3.141592653 \ldots$
+\item
+$e$: Euler's constant; the base of ``natural'' logarithms: $e \approx
+  2.718281828 \ldots$
+\item
+$i$: the name of the number whose square is $-1$; $i$ is appended to
+  the real numbers in order to ``complete'' them to the complex
+  numbers, within which system every polynomial of degree $n$ has $n$
+  roots.
+\end{itemize}
+
+\medskip
+
+\addcontentsline{toc}{paragraph}{A. Positional number systems}
+\noindent {\small\sf A. Positional number systems.}\index{positional
+  number system}
+%
+The most common way of forming numerals is via strings over a {\it
+  number base}.\index{positional number system!base of the system}  
+%
+We begin with an integer $b>1$ that will serve as our base, and we
+define the set $B_b = \{ 0, 1, \ldots, b-1\}$ of {\it digits in base
+  $b$}.\index{positional number system!digits in base $b$}
+%
+To aid legibility, {\em within the context of base-$b$ positional
+  numerals}, we denote the digit $b-1$ as a single character,
+$\bar{b}$.\index{$\bar{b}$: the digit $b-1$ in base $b$}
+%
+We then form base-$b$ numerals in the following way.\index{positional
+  number system!base-$b$ numerals}
+%
+This formation builds on {\em geometric sums}, a mathematical
+structure that we shall learn to manipulate, evaluate, and compute
+with in Section~\ref{sec:sums-series}.
+
+A base-$b$ numeral is a string having three sections.
+\begin{enumerate}
+\item
+The numeral begins with its {\em integral part},\index{positional
+  number system!integral part of a numeral}
+%
+which is a finite string of digits from $B_b$: $\alpha_n \alpha_{n-1}
+\cdots \alpha_1 \alpha_0$.
+
+The base-$b$ number represented by the numeral's integral
+part\index{positional number system!numerical value of integral part}
+is\footnote{Our underlined notation for the numerical value of a
+  numeral is not common, but we find it convenient.}
+\[
+\underline{\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0}
+\ \ \eqdef \ \
+\sum_{i=0}^n \alpha_i \cdot b^i
+\]
+
+\item
+The numeral continues with a single occurrence of the {\it
+  radix point}\index{positional number system!radix point ``$.$''}
+``$.$''
+\item
+The numeral ends with its {\em fractional part},\index{positional
+  number system!fractional part of a numeral}
+%
+which is a string---{\em finite or infinite}--- of digits from $B_b$:
+$\beta_0 \beta_1 \beta_2 \cdots$.
+
+The base-$b$ number represented by the numeral's fractional part
+is\index{positional number system!numerical value of fractional part}
+\[
+\underline{. \beta_0 \beta_1 \beta_2 \cdots}
+\ \ \eqdef \ \
+\sum_{j\geq 0} \beta_j \cdot b^{-j}
+\]
+\end{enumerate}
+In summary, then, the base-$b$ number represented by the numeral
+$\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
+. \beta_0 \beta_1 \beta_2 \cdots$ 
+is\index{positional number system!numerical value of numeral}
+\[
+\underline{\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
+. \beta_0 \beta_1 \beta_2 \cdots}
+\ \ \eqdef \ \
+\sum_{i=0}^n \alpha_i \cdot b^i
+\ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}.
+\]
+By prepending a ``negative sign'' (or, ``minus sign'') $-$ to a
+numeral or a number, one renders the thus-embellished entity as
+negative.
+
+\bigskip
+
+\addcontentsline{toc}{paragraph}{B. Scientific notation}
+\noindent {\small\sf B. Scientific notation.}\index{Scientific notation}
+%
+The finite numerals in subsection A are all ``exact'' in the sense
+that changing any digit changes the value of the named number.  We
+turn now to a class of numerals that abjure this ``exactness'' for the
+sake of expedience.  There are a few reasons that one might be willing
+to do this.
+
+\begin{itemize}
+\item
+WHY SCIENTIFIC NOTATION
+\end{itemize}
+
+\addcontentsline{toc}{paragraph}{C. Exact arithmetic}
+
+
+
+
+
+\section{Arithmetic and Its Laws}\index{laws of arithmetic}
+\label{sec:Arithmetic-Tools+Laws}
+
+Numbers are {\it adjectives}\index{number!as adjective}---you have
+five apples and three oranges---but in contrast to adjectives that are
+purely descriptive---the red ball, the big dog---numbers can be {\em
+  manipulated},\index{number!as {\em manipulable} adjective} using the
+tools of {\it arithmetic}.
+
+\subsection{The Tools of Arithmetic}
+\label{sec:arithmetic-tools}
+
+The basic tools of arithmetic reside in a small set of operations,
+together with two special integers that play important roles with
+respect to the operations.  Since these entities are so tightly
+intertwined, we discuss them simultaneously.
+
+\smallskip
+
+\noindent {\small\sf Two special integers}
+%
+The integers zero ($0$)\index{number!zero ($0$)} and one
+($1$),\index{number!one ($1$)} play special roles within all four of
+the classes of numbers we have described.
+
+\smallskip
+
+\noindent {\small\sf  The operations of arithmetic}\index{arithmetic!basic operations}
+%
+Arithmetic on the four classes of numbers that we have described is
+built upon the following operations.  When we say that an operation
+produces a number ``of the same sort'', we mean that it produces
+\begin{itemize}
+\item
+an integer result from integer arguments;
+\item
+a rational (number) result from rational (number) arguments;
+\item
+a real (number) result from real (number) arguments;
+\item
+a complex (number) result from complex (number) arguments;
+\end{itemize}
+The fundamental operations on numbers are, of course, familiar to the
+reader.  Our goal in discussing them is to stress the laws that govern
+the operations.
+
+\subsubsection{Unary (single-argument) operations}
+
+\addcontentsline{toc}{paragraph}{A. Negating numbers}
+\noindent {\small\sf A. Negating numbers.}
+\index{arithmetic!basic operations!negation}
+%
+The operation of {\it negation:}
+\index{arithmetic!basic operations!negating}
+\begin{itemize}
+\item
+is a {\em total function} on the sets $\Z, \Q, \R, \C$.  It replaces
+a number $a$ by its {\em negative},
+\index{number!negative}
+a number of the same sort, denoted $-a$.
+\item
+is a {\em partial function} on the nonnegative subsets
+of $\Z, \Q, \R, \C$.  It replaces a number $a$ by its negative, $-a$,
+whenever both $a$ and $-a$ belong to the nonnegative subset being
+operated on.
+\end{itemize}
+Zero ($0$) is the unique {\it fixed point}\index{function!fixed
+  point}\index{aritmetic!megation!fixed point} of the operation,
+meaning that $0$ is the unique number $a$ such that $a = -a$.
+
+\medskip
+
+\addcontentsline{toc}{paragraph}{B. Reciprocating numbers}
+\noindent {\small\sf B. Reciprocating numbers}.
+\index{arithmetic!basic operations!reciprocal}
+%
+The operation of {\it reciprocating}
+\begin{itemize}
+\item
+\index{arithmetic!basic operations!reciprocating}
+is a {\em total function} on the sets $\Q, \R, \C$, which replaces each
+number $a$ by its {\em reciprocal}, 
+\index{number!reciprocal}
+a number of the same sort, denoted $1/a$ or $\displaystyle {1 \over
+  a}$.  We shall employ whichever notation enhances legibility.
+
+\item
+is {\em undefined} on every integer $a$ except for $1$.
+\end{itemize}
+
+\medskip
+
+\addcontentsline{toc}{paragraph}{C. Floors and ceilings}
+\noindent {\small\sf C. Floors and ceilings.}
+\index{arithmetic!basic operations!floors and ceiling}
+%
+The operations of {\it taking floors and ceilings} are total
+operations on the sets $\N, \Z, \Q, \R$:
+\begin{itemize}
+\item
+The {\it floor} of a number $a$, also called {\it the integer part}
+\index{arithmetic!basic operations!integer part of a number}
+\index{arithmetic!basic operations!floor of a number}
+of $a$, denoted $\lfloor a \rfloor$, is the largest integer that does
+not exceed $a$; i.e.,:
+\[
+\lfloor a \rfloor \ \eqdef \ \max_{b \in {\mathbb{N}}} \Big[ b \ \leq a \Big]
+\]
+\item
+The {\it ceiling} of a number $a$
+\index{arithmetic!basic operations!ceiling of a number}
+of $a$, denoted $\lceil a \rceil$, is the smallest integer that is 
+not smaller than $a$:
+\[
+\lceil a \rceil \ \eqdef \ \min_{b \in {\mathbb{N}}} \Big[ b \ \geq a \Big]
+\]
+\end{itemize}
+Thus, the operations of taking floors and ceilings are two ways to
+{\em round} rationals and reals to their ``closest''
+integers.\index{arithmetic!basic operations!rounding to ``closest'' integer}
+
+\medskip
+
+\addcontentsline{toc}{paragraph}{D. Absolute values, magnitudes}
+\noindent {\small\sf D. Absolute values, magnitudes}
+\index{arithmetic!basic operations!absolute value, magnitude}
+%
+Let $a$ be a real number.  The {\it absolute value}, or, {\it
+  magnitude}, of $a$, denoted $|a|$ equals either $a$ or $-a$,
+whichever is positive.  For a complex number $a$, the definition of
+$|a|$ is more complicated: it is a measure of $a$'s ``distance'' from
+the ``origin'' complex number $0 + 0 \cdot i$.  In detail:
+\[
+|a| \ = \ \left\{
+\begin{array}{cl}
+a & \mbox{ if } \ [a \in \R] \ \ \mbox{ and } [a \geq 0] \\
+-a & \mbox{ if } \ [a \in \R] \ \ \mbox{ and } [a < 0] \\
+\sqrt{b^2 + c^2} &  \mbox{ if } \ [a \in \C]  \ \ \mbox{ and } [a = (b+ci)]
+\end{array}
+\right.
+\]
+
+
+\subsubsection{Binary (two-argument) operations}
+\label{sec:binary-operators}
+
+\addcontentsline{toc}{paragraph}{A. Addition and Subtraction}
+\noindent {\small\sf A. Addition and Subtraction.}
+\index{arithmetic!basic operations!addition}
+\index{arithmetic!basic operations!subtraction}
+%
+The operation of {\it addition}\index{arithmetic!addition} is a {\em
+  total function} that replaces any two numbers $a$ and $b$ by a
+number of the same sort.  The resulting number is the {\em sum of $a$
+  and $b$}\index{arithmetic!addition!sum} and is denoted $a+b$.
+
+\noindent
+The operation of {\it subtraction}\index{arithmetic!subtraction} is a
+{\em total function} on the sets $\Z, \Q, \R, \C$, which replaces any
+two numbers $a$ and $b$ by a number of the same sort.  The resulting
+number is the {\em difference of $a$ and $b$}
+\index{arithmetic!subtraction!difference} and is denoted $a-b$.  On
+the nonnegative subsets of the sets $\Z, \Q, \R, \C$---such as $\N$,
+which is the largest nonnegative subset of $\Z$---subtraction is a
+{\em partial function}, which is defined only when $a \geq b$.
+
+Subtraction can also be defined as follows.  For any two numbers $a$
+and $b$, {\em the difference of $a$ and $b$ is the sum of $a$ and the
+  negation of $b$}; i.e.,
+\[ a-b \ = \ a + (-b) \]
+
+{\em The special role of $0$ under addition and subtraction.}
+%
+The number $0$ is the {\it identity} under addition and
+  subtraction.\index{number!additive identity}\index{number!identity
+  under addition}\index{identity!additive}
+%
+This means that, for all numbers $a$,
+\[ a+0 \ = \ a-0 \ = \ a. \]
+
+{\em The special role of $1$ under addition and subtraction.}
+%
+For any integer $a$, there is no integer between $a$ and $a+1$ or
+between $a-1$ and $a$.  For this reason, on the sets $\Z$ and $\N$,
+one often singles out the following special cases of addition and
+subtraction, especially in reasoning about situations that are indexed
+by integers.  Strangely, these operations have no universally accepted
+notations.
+\begin{itemize}
+\item
+The {\it successor} operation\index{arithmetic!integers!successor} is
+a {\em total function} on both $\N$ and $\Z$, which replaces an
+integer $a$ by the integer $a+1$.
+\item
+The {\it predecessor} operation\index{arithmetic!integers!predecessor}
+is a {\em total function} on $\Z$, which replaces an integer $a$ by
+the integer $a-1$.  It is a {\em partial function} on $\N$, which is
+defined only when the argument $a$ is positive (so that $a-1 \in \N$).
+\end{itemize}
+
+The operations of addition and subtraction are said to be {\em
+  inverse operations}\index{arithmetic!integers!additive inverse}
+\index{arithmetic!integers!addition and subtraction are mutually
+  inverse} of each other because each can be used to ``undo'' the
+other:
+\[
+a \ = \ (a+b) -b \ = \ (a-b) +b
+\]
+
+\medskip
+
+\addcontentsline{toc}{paragraph}{B. Multiplication and Division}
+\noindent {\small\sf B. Multiplication and Division}.
+\index{arithmetic!basic operations!multiplication}
+\index{arithmetic!basic operations!division}
+%
+The operation of {\it multiplication}\index{arithmetic!multiplication}
+is a {\em total function} that replaces any two numbers $a$ and $b$ by
+a number of the same sort.  The resulting number is the {\em product
+  of $a$ and $b$}\index{arithmetic!multiplication!product} and is
+denoted either $a \cdot b$ \index{arithmetic!multiplication!$a \cdot  b$}
+or $a \times b$.\index{arithmetic!multiplication!$a \times b$}
+We shall usually favor the former notation, except when the latter
+enhances legibility.
+
+The operation of {\it division}\index{arithmetic!division} is a {\em
+  partial function} on all of our sets of numbers.  Given two numbers
+$a$ and $b$, the result of dividing $a$ by $b$---{\em when that result
+  is defined}---is the {\it quotient of $a$ by $b$}
+\index{arithmetic!division!When is $a/b$ defined?}
+\index{arithmetic!division!quotient}
+\index{arithmetic!division!quotient!$a/b$}
+\index{arithmetic!division!quotient!$a \div b$}
+\index{arithmetic!division!quotient!${a \over b}$}
+and is denoted by one of the following three notations: $a/b$, $a \div
+b$, $\displaystyle{a \over b}$.  The {\it quotient of $a$ by $b$} is
+defined precisely when {\em both}
+
+\noindent
+\hspace*{.35in}(1) $b \neq 0$: one can never divide by $0$ \\
+\hspace*{.35in}{\em and} \\
+\hspace*{.35in}(2) there exists a number $c$ such that $a = b \cdot c$.
+
+\noindent
+Assuming that condition (1) holds, {\em condition (2) always holds
+  when $a$ and $b$ belong to $\Q$ or $\R$ or $\C$}.
+
+Division can also be defined as follows.  For any two numbers $a$
+and $b$, {\em the quotient of $a$ and $b$ is the product of $a$ and the
+reciprocal of $b$} (assuming that the latter exists); i.e.,
+\[ a/b \ = \ a \cdot (1/b). \]
+Computing reciprocals of nonzero numbers in $\Q$ and $\R$ is standard
+high-school level fare; computing reciprocals of nonzero numbers in
+$\C$ requires a bit of calculational algebra which we do not cover.
+For completeness, we note that the reciprocal of the {\em nonzero}
+complex number $a + bi \in \C$ is the complex number $c+di$ where
+\[ c \ = \ \frac{a}{a^2 + b^2} \ \ \ \ \
+\mbox{ and } \ \ \ \ \
+d \ = \ \frac{-b}{a^2 + b^2}.
+\]
+
+{\em The special role of $1$ under multiplication and division.}
+%
+The number $1$ is the {\it identity} under the operations of
+multiplication and division.\index{number!multiplicative
+  identity}\index{number!identity under
+  multiplication}\index{identity!multiplicative}
+%
+This means that, for all numbers $a$,
+\[ a \cdot 1 \ = \ a \cdot (1/1) \ = \ a. \]
+
+{\em The special role of $0$ under multiplication and division.}
+%
+The number $0$ is the {\it annihilator} under
+multiplication.\index{multiplicative annihilator} This means that, for
+all numbers $a$
+\[ a \cdot 0 \ = \ 0. \]
+
+The operations of multiplication and division are said to be {\em
+  inverse operations}\index{arithmetic!integers!multiplicative
+  inverse} \index{arithmetic!integers!multiplication and division are
+  mutually inverse} because, when both operations can be applied, each
+can be used to ``undo'' the other:
+\[ a = (a \cdot b) \div b \ = \ (a \div b) \cdot b.  \]
+
+
+\subsection{The Laws of Arithmetic}\index{arithmetic!basic laws}
+\label{sec:Arithmetic-Laws}
+
+The student should understand the following laws of arithmetic on the
+reals, rationals, and reals---and be able to employ them cogently in
+rigorous argumentation.
+\begin{itemize}
+\item
+{\it The commutative law}.\index{commutative law!arithmetic}
+\index{commutative law!addition}
+\index{commutative law!multiplication}
+\index{arithmetic!commutative law}
+%
+For all numbers $x$ and $y$:
+\[
+\begin{array}{llc}
+\mbox{\it for addition:}
+  & & x+y \ = \ y+x \\
+\mbox{\it for multiplication:}
+  & & x \cdot y \ = \ y \cdot x
+\end{array}
+\]
+
+\item
+{\it The associative law}.\index{associative law for
+  arithmetic}\index{arithmetic!associative law}
+%
+For all numbers $x$, $y$, and $z$,
+\[ (x+y)+z \ = \ x+(y+z) \ \ \ \mbox{\bf and } \ \ 
+x\cdot (y\cdot z) 
+(x \cdot y) \cdot z \ = \ x\cdot (y\cdot z). \] 
+This allows one, for instance, to write strings of additions or of
+multiplications without using parentheses for grouping.
+
+\item
+{\it The distributive law}.\index{distributive law for
+  arithmetic}\index{arithmetic!distributive law}
+%
+For all numbers $x$, $y$, and $z$,
+\begin{equation}
+\label{eq:distr-law}
+x \cdot (y + z) \ = \ (x \cdot y) + (x \cdot z).
+\end{equation}
+One commonly articulates this law as, ``{\em Multiplication
+  distributes over addition.}''
+\end{itemize}
+One of the most common uses of the distributive law reads equation
+(\ref{eq:distr-law}) ``backwards,'' thereby deriving a formula for
+{\em factoring} \index{arithmetic!factoring} complex expressions that
+use both addition and multiplication.
+
+Easily, addition does {\em not} distribute over multiplication; i.e.,
+in general, $x + y \cdot z \ \neq \ (x+y) \cdot (x+z)$.  Hence, when
+we see ``$x + y \cdot z$'', we know that the multiplication is
+performed before the addition.  In other words, {\em Multiplication
+  takes priority over addition.}  \index{arithmetic!priority of
+  multiplication over addition} This priority permits us to write the
+righthand side of (\ref{eq:distr-law}) without parentheses, as in
+\[ x \cdot (y + z) \ = \ x \cdot y + x \cdot z. \]
+
+Via multiple invocations of the preceding laws, we can derive a recipe
+for multiplying complicated expressions.  We illustrate this via the
+``simplest'' complicated expression, $(a+b) \cdot (c+d)$.
+
+\begin{prop}
+\label{prop:(a+b)(c+d)}
+For all numbers $a, b, c, d$:
+\begin{equation}
+\label{eq:(a+b)(c+d)}
+(a+b) \cdot (c+d) \ = \ a \cdot c + a \cdot d + b \cdot c + b \cdot d
+\end{equation}
+\end{prop}
+
+\noindent {\it Verification}.
+%
+Note first that because multiplication takes priority over addition,
+the absence of parentheses in expressions such as
+(\ref{prop:(a+b)(c+d)}) does not jeopardize unambiguity.  Our proof of
+the proposition invokes the laws we have just enunciated multiple
+times.
+\[
+\begin{array}{lclll}
+(a+b) \cdot (c+d) & = & (a+b) \cdot c \ + \ (a+b) \cdot d
+& & \mbox{distributive law} \\ 
+  & = & c \cdot (a+b) \ + \ d \cdot (a+b)
+& & \mbox{commutativity of multiplication} \ (2 \times) \\
+  & = & c \cdot a + c \cdot b + d \cdot a + d \cdot b 
+& & \mbox{distributive law} \ (2 \times) \\
+  & = & a \cdot c + b \cdot c + a \cdot d + b \cdot d
+& & \mbox{commutativity of multiplication} \ (4 \times) \\
+  & = &  a \cdot c + a \cdot d + b \cdot c + b \cdot d
+& & \mbox{commutativity of addition}
+\end{array}
+\]
+\qed
+
+We close our short survey of the laws of arithmetic with the following
+important two-part law.
+\begin{itemize}
+\item
+{\it The law of inverses}.\index{inverse laws for
+  arithmetic}\index{laws of arithmetic!inverse laws}
+%
+  \begin{itemize}
+  \item
+Every number $x$ has an {\em additive inverse},\index{additive inverse}
+i.e., a number $y$ such that $x+y =0$.  This inverse is $x$'s {\it
+  negative} $-x$.\index{additive inverse!negative as additive inverse}
+  \item
+Every {\em nonzero} number $x \neq 0$ has a {\em multiplicative
+  inverse},\index{multiplicative inverse} i.e., a number $y$ such that
+$x \cdot y = 1$.  This inverse is $x$'s {\it reciprocal},
+$1/x$.\index{multiplicative inverse!reciprocal as multiplicative inverse}
+  \end{itemize}
+\end{itemize}
+
+We close this section with another of our ``fun'' propositions.
+
+\begin{prop}
+\label{thm:75x65=4925}
+Let $n$ be any number that has a $2$-digit decimal of the form $\delta
+5$, where $\delta \in \{ 0,1,2,3,4,5,6,7,8,9 \}$,
+so that
+\[ n \ = \ 10 \cdot \delta + 5
+\]
+Then 
+\[ n^2 \ = \ 100 \cdot \delta \cdot (\delta+1) + 25. \]
+In other words, one obtains a base-$10$ numeral for $n^2$ by
+multiplying $\delta$ by $\delta +1$ and appending $25$ to the product.
+\end{prop}
+
+\noindent
+Examples of Proposition ~\ref{thm:75x65=4925} include
+$25^2 = 625$ (because $2 \cdot 3 = 6$) and $75^2 = 5625$ (because $7
+\cdot 8 = 56$).
+
+\noindent {\it Verification} (for general $\delta$).
+%
+We invoke Proposition~\ref{prop:(a+b)(c+d)} and the distributive law.
+\[
+\begin{array}{lclll}
+n^2 & = & (10 \cdot \delta + 5)^2 & & \mbox{Given} \\
+    & = & 100 \cdot \delta^2 \ + \ 100 \cdot delta \ + \ 25
+              & & \mbox{the proposition} \\
+    & = & 100 \cdot (\delta^2 \ + \ \delta) \ + \ 25
+              & & \mbox{factoring: distributive law} \\
+    & = & 100 \cdot \delta \cdot (\delta + 1) \ + \ 25
+              & & \mbox{factoring: distributive law} \\
+\end{array}
+\]
+\qed
+
+\subsection{Rational Arithmetic: A Worthwhile Exercise}
+\label{sec:Rational-arithmetic}
+\index{number!rational!arithmetic}
+
+In Section~\ref{sec:rationals} we defined the rational numbers and
+reviewed why they were needed to compensate for the general lack of
+multiplicative inverses in the integers.  But we did not review how to
+perform arithmetic on the elements of the set $\Q$.  We correct this
+shortcoming now.  Of course, the reader will have encountered rational
+arithmetic long ago---but we are now reviewing the topic in order to
+provide the reader with a set of worthwhile exercise to reinforce the
+mathematical thinking whose presentation is our main goal.
+
+\medskip
+
+The rational numbers build their rules for arithmetic upon the
+corresponding rules for integers.  For all $p/q$ and $r/s$ in $\Q$:
+\[
+\begin{array}{|llcl|}
+\hline
+\mbox{\small\sf Addition:} & 
+{\displaystyle
+{p \over q} + {r \over s} }
+  & = &
+{\displaystyle
+ \frac{p \cdot s + r \cdot q}{q \cdot s} }  \\
+ & & & \\
+\mbox{\small\sf Subtraction:} &
+{\displaystyle
+{p \over q} + {r \over s} }
+  & = & 
+{\displaystyle
+{p \over q} + {(-r) \over s} } \\
+ & & & \\
+\mbox{\small\sf Multiplication:} &
+{\displaystyle
+{p \over q} \cdot {r \over s} }
+  & = & 
+{\displaystyle
+\frac{p \cdot r}{r \cdot s} } \\
+  & & & \\
+\mbox{\small\sf Division:} &
+{\displaystyle
+{p \over q} \div {r \over s} }
+  & = &
+{\displaystyle
+{p \over q} \cdot {s \over r} } \\
+\hline
+\end{array}
+\]
+
+It is worth verifying that rational arithmetic as thus defined behaves
+in the required manner; in particular that rational arithmetic:
+\begin{itemize}
+\item
+works correctly when the argument rational numbers are, in fact,
+integers, i.e., when $q = s = 1$ in the preceding table.
+\item
+treats the number $0$ appropriately, i.e., as an additive identity and
+a multiplicative annihilator; cf., Sections~\ref{sec:arithmetic-tools}
+and~\ref{sec:Arithmetic-Laws}.
+\item
+obeys the required laws; cf., Section~\ref{sec:Arithmetic-Laws}.
+
+Verifying the distributivity of rational multiplication over rational
+addition will be a particularly valuable exercise because of the
+required amount of manipulation.
+\end{itemize}
+
+\section{Basic Algebraic Concepts and Their Manipulations}
+
+\subsection{Powers and polynomials}
+
+A conceptually powerful notational construct is the operation of {\it
+  raising a number to a power:}\index{raising a number to a power}
+%
+For real numbers $a$ and $b$, the {\it $b$th power} of $a$, denoted
+$a^b$ is defined by the system of equations
+\begin{equation}
+\label{eq:power-def}
+\begin{array}{llll}
+\mbox{for all numbers $a>0$} & & & a^0 = 1 \\
+ & & & \\
+\mbox{for all numbers $a, b, c$} & & & a^b \cdot a^c = a^{b+c}.
+\end{array}
+\end{equation}
+This deceptively simple definition has myriad consequences which we
+often take for granted.
+\begin{itemize}
+\item
+For all numbers $a>0$, the number $a^0 = 1$.
+
+This follows (via cancellation) from (\ref{eq:power-def}) via the fact
+that
+\[ a^b \cdot a^0 \ = \ a^{b+0} \ = \ a^b \ = \ a^b \cdot 1.  \]
+
+\item
+For all numbers $a >0$, the number $a^{1/2}$\index{$a^{1/2}$: the
+  square root of number $a$}
+is the {\it square root} of $a$,\index{square root}
+i.e., $a^{1/2}$ is the (unique, via cancellation) number $b$ such that
+$b^2 = a$.  Another common notation for The number $a^{1/2}$ is
+$\sqrt{a}$.\index{$\sqrt{a}$: the square root of number $a$}
+
+This follows from (\ref{eq:power-def}) via the fact that
+\[ a \ = \ a^1 \ = \ a^{(1/2) + (1/2)} \ = \ a^{1/2} \cdot a^{1/2} \ = \
+\left(a^{1/2}\right)^2. \]
+
+\item
+For all numbers $a>0$ and $b$, the number $a^{-b}$ is the {\it
+  multiplicative inverse}\index{multiplicative inverse}
+of $a^b$, meaning that $a^b \cdot a^{-b} = 1$
+
+This follows from (\ref{eq:power-def}) via the fact that
+\[ a^b \cdot a^{-b} \ = \ a^{(b + (-b))} \ = \ a^0 \ = \  1 \]
+\end{itemize}
+When the power $b$ is a positive integer, then definition
+(\ref{eq:power-def}) can be cast in the following attractive inductive
+form:
+\begin{equation}
+\label{eq:power-def-integer}
+\begin{array}{llll}
+\mbox{for all numbers $a>0$} & & & a^0 = 1 \\
+ & & & \\
+\mbox{for all numbers $a$ and integers $b$} & & & a^{b+1} = a \cdot
+a^b.
+\end{array}
+\end{equation}
+Summing up, we now know about powers that are integral or fractional,
+positive, zero, or negative
+
+We want the student to master the notions of polynomials and their
+associated notions, such as degrees and coefficients, and computations
+therewith, including polynomial summation and multiplication.  While
+polynomial multiplication is often considered ``non-elementary'', it
+must be mastered in order to fully understand positional number
+systems; it is also essential, e.g., when discussing a range of topics
+relating to, say, fault tolerance and encryption).
+
+\subsection{Exponentials and Logarithms}
+
+This section introduces the fundamentals of two extremely important
+classes of functions which are functional inverses of each other, in
+the following sense.  Functions $f$ and $g$ are {\it functional
+  inverses}\index{functional inverse} of each other if for all
+arguments $x$
+\begin{equation}
+\label{eq:functional-inverse}
+f(g(x)) \ = \ x.
+\end{equation}
+
+\subsubsection{Basic definitions}
+
+\addcontentsline{toc}{paragraph}{A. Exponential functions} 
+\noindent {\small\sf A. Exponential functions}.\index{Exponential functions}
+%
+A function $f$ is {\it exponential} if there is a positive number $b$
+such that, for all $x$,
+\begin{equation}
+\label{eq:exponential-defn}
+f(x) \ = \ b^x.
+\end{equation}
+The number $b$ is the {\it base}\index{base of exponential}
+%
+of $f(x)$.  The basic arithmetic properties of exponential functions
+are derivable from (\ref{eq:power-def}), so we leave these details to
+the reader and turn immediately to the functional inverses of
+exponential functions..
+
+\addcontentsline{toc}{paragraph}{B. Logarithmic functions}
+\noindent {\small\sf B. Logarithmic functions}.\index{Logarithmic
+  functions}
+%
+Given an integer $b >1$ (mnemonic for ``base''), the {\em base-$b$
+  logarithm}\index{base-$b$ logarithm}
+%
+of a real number $a > 0$ is denoted $\log_b a$ and defined by the
+equation\index{$\log_b a$: the base-$b$ logarithm of number $a$}
+\begin{equation}
+\label{eq:logarithm-defn}
+a \ = \ b^{\log_b a}.
+\end{equation}
+Logarithms are partial functions: $\log_b a$ is not defined for
+non-positive arguments.
+
+The base $b = 2$ is so prominent in the contexts of computation theory
+and information theory that we commonly invoke one of two special
+notations for $\log_2 a$: (1) we often elide the base-$2$ subscript
+and write $\log a$;\index{$\log(a)$: base-$2$ logarithm of number $a$}
+(2) we employ the specialized notation $\ln a$\index{$\ln(a)$:
+  base-$2$ logarithm of number $a$}.  Notationally:
+\[ \log_2 a \ \eqdef \ \log a \ \eqdef \ \ln a \]
+
+We leave to the reader the easy verification, from
+(\ref{eq:logarithm-defn}), that the {\it base-$b$ logarithmic
+  function}, defined by
+\begin{equation}
+\label{eq:log-function-defn}
+f(x) \ = \ \log_b x
+\end{equation}
+is the functional inverse of the base-$b$ exponential function.
+
+\subsubsection{Fun facts about exponentials and logarithms}
+
+Definition (\ref{eq:logarithm-defn}) exposes and---even more
+importantly---explains myriad facts about logarithms that we often
+take for granted.
+
+\begin{prop}
+For any base $b >1$, for all numbers $x >0$, $y>0$,
+\[ \log_b (x \cdot y) \ = \ \log_b x \ + \ \log_b y \]
+\end{prop}
+
+\noindent {\it Verification}.
+%
+Definition (\ref{eq:logarithm-defn}) tells us that $x = b^{\log_b x}$
+and $y = b^{\log_b y}$.  Therefore,
+\[ x \cdot y \ = \ b^{\log_b x} \cdot b^{\log_b y} \ = \
+b^{\log_b x \ + \ \log_b y}, \]
+by the laws of powers.  Taking base-$b$ logarithms of the first and
+last terms in the chain yields the claimed equation.
+\qed
+
+Many students believe that the following result is a {\em convention}
+rather than a consequence of the basic definitions.  {\em The logarith
+  of $1$ to any base is $0$.}
+
+\begin{prop}
+For any base $b >1$,
+\[ \log_b 1 \ = \ 0 \]
+\end{prop}
+
+\noindent {\it Verification}.
+%
+We note the following chain of equalities.
+\[  b^{\log_b x} \ = \ b^{\log_b (x \cdot 1)} 
+\ = \ b^{(\log_b x) + (\log_b 1)} 
+\ = \ b^{\log_b x} \cdot b^{\log_b 1}
+\]
+Hence, $b^{\log_b 1} \ = \ 1$.  If $\log_b 1$ did not equal $0$, then
+$b^{\log_b 1}$ would exceed $1$.
+\qed
+
+\begin{prop}
+For all bases $b > 1$ and all numbers $x, y$,
+\[ x^{\log_b y} \ = \ y^{\log_b x} \]
+\end{prop}
+
+\noindent {\it Verification}.
+%
+We invoke (\ref{eq:logarithm-defn}) twice to remark that
+\[ \left[x^{\log_b y} \ = \ b^{(\log_b x) \cdot (\log_b y)}\right]
+\ \ \mbox{ and } \ \ 
+\left[y^{\log_b x}\ = \ b^{(\log_b y) \cdot (\log_b x)}\right] \]
+The commutativity of addition completes the verification.
+\qed
+
+\begin{prop}
+For any base $b >1$,
+\[ \log_b (1/x) \ = \ - \log_b x \]
+\end{prop}
+
+\noindent {\it Verification}.
+%
+This follows from the fact that $\log_b 1 =0$, coupled with the
+product law for logarithms.
+\[ \log_b x + \log_b (1/x) \ = \ \log_b (x \cdot (1/x))
+\  = \ \log_b 1 \ = \ 0 
+\]
+\qed
+
+\begin{prop}
+For any bases $a, b >1$,
+\begin{equation}
+\label{eq:log-exp-0}
+\log_b x \ = \ \left(\log_b a \right) \cdot \left( \log_a x \right).
+\end{equation}
+\end{prop}
+
+\noindent {\it Verification}.
+%
+We begin by noting that, by definition,
+Note that
+\begin{equation}
+\label{eq:log-exp-1}
+ x \ = \ b^{\log_b x} \ = \ a^{\log_a x} .
+\end{equation}
+Let us take the base-$b$ logarithm of the second and third expressions
+in (\ref{eq:log-exp-1}) and then invoke the product law for logarithms.
+From the second expression in (\ref{eq:log-exp-1}), we find that
+\begin{equation}
+\label{eq:log-exp-2}
+ \log_b \left(b^{\log_b x} \right) \ = \ \log_b x .
+\end{equation}
+From the third expression in (\ref{eq:log-exp-1}), we find that
+\begin{equation}
+\label{eq:log-exp-3}
+ \log_b \left( a^{\log_a x} \right) \ = \
+\left(\log_b a \right) \cdot \left( \log_a x \right).
+\end{equation}
+We know from (\ref{eq:log-exp-1}) that the righthand expressions in
+(\ref{eq:log-exp-2}) and (\ref{eq:log-exp-3}) are equal, whence
+(\ref{eq:log-exp-0}) \qed
+
+If we set $x = b$ in (\ref{eq:log-exp-0}), then we find the following
+marvelous equation.
+
+\begin{prop}
+For any integers $a, b >1$,
+\begin{equation}
+\left(\log_b a \right) \cdot \left( \log_a b \right) \ = \ 1 \ \ \ \ \
+\mbox{ or, equivalently, } \ \ \ \ \
+\log_b a \ = \ \frac{1}{\log_a b} .
+\end{equation}
+\end{prop}
+
+
+
+\subsubsection{Exponentials and logarithms within information theory}
+
+The student should recognize and be able to reason about the following
+facts.  If one has an alphabet $A$ of $a$ symbols and must provide
+distinct string-label ``names'' for $n$ items, then at least one
+string-name must have length no shorter than $\lceil \log_a n \rceil$.
+Viewed contrapositively, the number of distinct strings of length $k$
+over alphabet $A$ is $a^k$.
+
+\subsection{Arithmetic and geometric sequences and series}
+\label{sec:sums-series}
+
+The ability to sum -- and perhaps approximate -- simple series,
+including, {\em at least}, finite arithmetic series and both finite
+and infinite geometric series.
+
+\addcontentsline{toc}{paragraph}{A. Arithmetic sequences and series}
+\noindent {\small\sf A. Arithmetic sequences and series.}
+%
+We define arithmetic sequences and learn how to calculate their sums.
+
+\begin{equation}
+\label{eq:arith-seq}
+\begin{array}{l}
+\mbox{An $n$-term arithmetic sequence:} \\
+\hspace*{.25in}a, \ a+b, \ a+2b, \ a+3b, \ \ldots, a+(n-1)b \\
+\\
+\mbox{The corresponding arithmetic series:} \\
+\hspace*{.25in}a + (a+b) + (a+2b) + (a+3b) + \cdots + (a+(n-1)b) \\
+\hspace*{.5in} = \
+an + b \cdot (1 + 2 + \cdots + n-1)
+\end{array}
+\end{equation}
+We can, thus, sum the arithmetic series in (\ref{eq:arith-seq}) by
+determining the sum of the first $m$ positive integers; $m = n-1$ in
+(\ref{eq:arith-seq}).  We accomplish this via a device known to Karl
+Friedrich Gauss as a pre-teen.  Let $S_m$ denote the desired sum.
+\begin{equation}
+\label{eq:arith-series}
+\begin{array}{lccccccccc}
+\multicolumn{10}{l}{\mbox{Write the sum $S_m$ ``forward'':}} \\
+\hspace*{.5in}S_m = & 1 & + & 2   & + & \cdots & + & (m-1) & + & m \\
+\multicolumn{10}{l}{\mbox{Write $S_m$ in reverse:}} \\
+\hspace*{.5in}S_m = & m & + & (m-1) & + & \cdots & + & 2     & + & 1
+\end{array}
+\end{equation}
+Now add the two versions of $S_m$ in (\ref{eq:arith-series}) {\em
+  columnwise}.  Because each column-sum equals $m+1$, we find that
+$2S_m = m(m+1)$, so that
+\begin{equation}
+\label{eq:arith-sum}
+S_m  \ = \
+1 + 2 + \cdots + (m-1) + m \ = \ {1 \over 2} m (m+1) \ 
+\eqdef \ {{m+1}  \choose 2}.
+\end{equation}
+It follows that our original series in (\ref{eq:arith-seq}) sums as
+follows.
+\[
+a + (a+b) + (a+2b) + (a+3b) + \cdots + (a+(n-1)b) \ = \
+an + b \cdot {n \choose 2}. 
+\]
+
+\addcontentsline{toc}{paragraph}{B. Geometric sequences and series}
+\noindent {\small\sf B. Geometric sequences and series.}
+%
+We define geometric sequences and learn how to calculate their sums.
+
+\begin{equation}
+\label{eq:geom-seq}
+\begin{array}{l}
+\mbox{An $n$-term geometric sequence:} \\
+\hspace*{.25in}a, \ ab, \ ab^2, \ \ldots, ab^{n-1} \\
+\\
+\mbox{The corresponding geometric series:} \\
+\hspace*{.25in}a + ab + ab^2 + \cdots + ab^{n-1} \ = \
+ a (1+ b + b^2 + \cdots + b^{n-1})
+\end{array}
+\end{equation}
+Easily, we can sum the series in (\ref{eq:geom-seq}) by summing just
+the sub-series
+\begin{equation}
+\label{eq:geom-series}
+S_{b}(n) \ \eqdef \
+1+ b + b^2 + \cdots + b^{n-1}.
+\end{equation}
+We proceed as follows.  Write $S_{b}(n)$ so that its terms are in {\em
+  decreasing} order.  We thereby isolate two cases.
+\begin{enumerate}
+\item
+Say first that $b > 1$.  In this case, we write the series in the form
+\[ S^{b>1}_{b}(n) \ = \ b^{n-1} + b^{n-2} + \cdots + b^2 + b + 1, \]
+and we note that
+\[ S^{b>1}_{b}(n) \ = \
+b^{n-1} \ + \ {1 \over b} \cdot S^{b>1}_{b}(n) \ - \ {1 \over b}. \]
+In other words, we have
+\[ \left( 1 - {1 \over b} \right)  S^{b>1}_{b}(n) \ = \ b^{n-1} - {1
+  \over b}, \]
+or equivalently,
+\begin{equation}
+\label{eq:geom-sum:b>1}
+S^{b>1}_{b}(n) \ = \ \frac{b^{n}- 1}{b - 1}.
+\end{equation}
+
+\item
+Alternatively, if $b < 1$, then we write the series in the form
+\[ S^{b<1}_{b}(n) \ = \ 1+ b + b^2 + b^3 + \cdots + b^{n-1}. \]
+and we note that
+\[ S^{b<1}_{b}(n) \ = \
+1 \ + \ b \cdot S^{b<1}_{b}(n) \ - \ b^n. \] 
+In other words,
+\[ (1-b) S^{b<1}_{b}(n) \ = \ 1 \ - \ b^n \]
+or equivalently,
+\begin{equation}
+\label{eq:geom-sum:b<1}
+S^{b<1}_{b}(n) \ = \ \frac{1 - b^n}{1-b}.
+\end{equation}
+\end{enumerate}
+
+Note that $S^{b>1}_{b}(n)$ and $S^{b<1}_{b}(n)$ actually have the same
+form.  We have chosen to write them differently to stress their {\em
+  approximate} values, which are useful in ``back-of-the-envelope''
+calculations:  For very large values of $n$, we have
+\begin{equation}
+\label{eq:geom-sum:approx}
+S^{b>1}_{b}(n) \ \approx \ \frac{b^n}{b-1} \ \ \
+\mbox{while} \ \ \
+S^{b<1}_{b}(n) \ \approx \ \frac{1}{1-b} .
+\end{equation}
+
+\bigskip
+
+\addcontentsline{toc}{paragraph}{C. An amusing result about numerals}
+\noindent {\small\sf C. An amusing result about numerals.}
+%
+We illustrate a somewhat surprising nontrivial fact about integers
+that are ``encoded'' in their positional numerals.  We hope that this
+``fun'' result will inspire the reader to seek kindred numeral-encoded
+properties of numbers.
+
+\begin{prop}
+\label{thm:div-by-b-bar}
+An integer $n$ is divisible by an integer $m$ if, and only if, $m$
+divides the sum of the digits in the base-$(m+1)$ numeral for $n$.
+\end{prop}
+
+The most familiar instance of this result is phrased in terms of our
+traditional use of base-$10$ (decimal) numerals. \\
+{\it An integer $n$ is divisible by $9$ if, and only if, the sum of
+  the digits of $n$'s base-$10$ numeral is divisible by $9$.}
+
+\smallskip
+
+\noindent {\it Verification} (for general base $b$).
+%
+Of course, we lose no generality by focusing on numerals without
+leading $0$'s, for adding leading $0$'s does not alter a numeral's sum
+of digits.
+
+To enhance legibility, let $b = m+1$, so that we are looking at the
+base-$b$ numeral for $n$.  Say that
+\[ n \ = \ \delta_k \cdot b^k + \delta_{k-1} \cdot b_{k-1} + \cdots +
+\delta_1 \cdot b + \delta_0, \]
+so that the sum of the digits of $n$'s base-$b$ numeral is
+\[ s_b(n) \ \eqdef \ \delta_k + \delta_{k-1} + \cdots + \delta_1 + \delta_0. \]
+We next calculate the difference $n - s_b(n)$.  We proceed as
+follows, digit by digit.
+\begin{equation}
+\label{eq:sum-of-digits}
+\begin{array}{ccccccccccc}
+n & = &
+\delta_k \cdot b^k & + & \delta_{k-1} \cdot b^{k-1} & + & \cdots
+  & + & \delta_1 \cdot b & + & \delta_0 \\
+s_b(n) & = &
+\delta_k & + & \delta_{k-1} & + & \cdots & + & \delta_1 & + & \delta_0 \\
+\hline
+n - s_b(n) & = &
+\delta_k \cdot (b^k -1) & + &
+\delta_{k-1} \cdot (b^{k-1} -1) & + &
+\cdots & + &
+\delta_1 \cdot (b-1) & & 
+\end{array}
+\end{equation}
+
+We now revisit summation (\ref{eq:geom-sum:b>1}).  Because $b$ is a
+positive integer, so that $1 + b + \cdots + b^{a-2} + b^{a-1}$ is also
+a positive integer, we adduce from the summation that {\em the integer
+  $b^a -1$ is divisible by $b-1$.}
+
+We are almost home.  Look at the equation for $n - s_b(n)$ in the
+system (\ref{eq:sum-of-digits}).  As we have just seen, every term on
+the righthand side of that equation is divisible by $b-1$.  It follows
+therefore, that the lefthand expression, $n - s_b(n)$, is also
+divisible by $b-1$.  An easy calculation, which we leave to the
+reader, now shows that this final fact means that $n$ is divisible by
+$b-1$ if, and only if, $s_b(n)$ is.  \qed
+
+
+\subsection{Linear recurrences}
+\label{sec:linear-recurrences}
+
+By the time the reader has reached this paragraph, she has the
+mathematical tools necessary to prove and apply what is called {\it
+  The Master Theorem for Linear Recurrences} \cite{CLRS}.  This level
+of mathematical preparation should be adequate for most
+early-undergrad courses on data structures and algorithms, as well for
+for analyzing a large fraction of the algorithms that she is likely to
+encounter in daily activities.
+
+\begin{theorem}[The Master Theorem for Linear Recurrences]
+\label{thm:master-thm}
+\index{The Master Theorem for Linear Recurrences}
+Let the function $F$ be specified by the following linear recurrence.
+\begin{equation}
+\label{eq:Lin-Recur:start}
+F(n) \ = \ \left\{
+\begin{array}{cl}
+a F(n/b) + c & \mbox{for } n \geq b \\
+c & \mbox{for } n < b
+\end{array}
+\right.
+\end{equation}
+Then the value of $F$ on any argument $n$ is given by
+\begin{equation}
+\label{eq:Lin-Recur:solve}
+\begin{array}{lclll}
+F(n) & = & (1 + \log_b n)c &  & \mbox{if } a=1 \\
+     &   &                 &  & \\
+     & = &
+  {\displaystyle
+  \frac{1-a^{\log_b n}}{1-a} \ \approx \ \frac{1}{1-a}
+  }
+ &  & \mbox{if } a<1 \\
+    &   &                  & & \\
+    & = &
+  {\displaystyle
+\frac{a^{\log_b n} -1}{a-1}
+  }
+ & & \mbox{if } a>1
+\end{array}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+In order to discern the recurring pattern in
+(\ref{eq:Lin-Recur:start}), let us begin to ``expand'' the specified
+computation by replacing occurrences of $F(\bullet)$ as mandated in
+(\ref{eq:Lin-Recur:start}).
+\begin{equation}
+\label{eq:Lin-Recur:expand}
+\begin{array}{lcccc}
+F(n) & = & a F(n/b) + c & & \\
+     & = & a \left( a F(n/b^2) + c \right) + c
+             & = & a^2 F(n/b^2) + (1 + a)c \\
+     & = & a^2 \left( a F(n/b^3) + c \right) + (1+a)c
+             & = & a^3 F(n/b^3) + (1 + a + a^2)c \\
+     &   & \vdots & & \vdots \\
+     & = & 
+{\displaystyle
+\left( 1 + a + a^2 + \cdots + a^{\log_b n} \right) c
+} & &
+\end{array}
+\end{equation}
+The segment of (\ref{eq:Lin-Recur:expand}) ``hidden'' by the vertical
+dots betokens an induction that is left to the reader.  Equations
+(\ref{eq:geom-sum:b>1}) and (\ref{eq:geom-sum:b<1}) now enable us to
+demonstrate that (\ref{eq:Lin-Recur:solve}) is the case-structured
+solution to (\ref{eq:Lin-Recur:start}).
+\qed
+\end{proof}
+
+
+
+\section{Elementary counting}
+
+\subsection{Binary Strings and Power Sets}
+
+\begin{prop}
+\label{thm:b-ary strings}
+For every integer $b > 1$, there are $b^n$ $b$-ary strings of length
+$n$.
+\end{prop}
+
+\noindent {\it Verification.}
+%
+The asserted numeration follows most simply by noting that there are
+always $b$ times as many $b$-ary strings of length $n$ as there are of
+length $n-1$.  This is because we can form the set of $b$-ary strings
+of length $n$ as follows.  Take the set $A_{n-1}$ of $b$-ary strings
+of length $n-1$, and make $b$ copies of it, call them $A^{(0)}_{n-1},
+A^{(1)}_{n-1}, \ldots, A^{(b-1)}_{n-1}$.  Now, append $0$ to every
+string in $A^{(0)}_{n-1}$, append $1$ to every string in
+$A^{(1)}_{n-1}$, \ldots, append $\bar{b} = b-1$ to every string in
+$A^{(b-1)}_{n-1}$.  The thus-amended sets $A^{(i)}_{n-1}$ are mutually
+disjoint (because of the terminal letters of their respective
+strings), and they collectively contain all $b$-ary strings of length
+$n$.  \qed
+
+\begin{prop}
+\label{thm:power-sets}
+The power set $\p(S)$ of a finite set $S$ contain $2^{|S|}$ elements.
+\end{prop}
+
+\noindent {\it Verification.}
+%
+Let us begin by taking an arbitrary finite set $S$---say of $n$
+elements---and laying its elements out in a line.  We thereby
+establish a correspondence between $S$'s elements and positive
+integers: there is the first element, which we associate with the
+integer $1$, the second element, which we associate with the integer
+$2$, and so on, until the last element along the line gets associated
+with the integer $n$.
+
+Next, let's note that we can specify any subset $S'$ of $S$ by
+specifying a length-$n$ {\em binary (i.e., base-$2$) string}, i.e., a
+string of $0$'s and $1$'s.  The translation is as follows.  If an
+element $s$ of $S$ appears in the subset $S'$, then we look at the
+integer we have associated with $s$ (via our linearization of $S$),
+and we set the corresponding bit-position of our binary string to $1$;
+otherwise, we set this bit-position to $0$.  In this way, we get a
+distinct subset of $S$ for each distinct binary string, and a distinct
+binary string for each distinct subset of $S$.
+
+Let us pause to illustrate our correspondence between sets and strings
+by focussing on the set $S = \{a,b,c\}$.  Just to make life more
+interesting, let us lay $S$'s elements out in the order $b,a,c$, so
+that $b$ has associated integer $1$, $a$ has associated integer $2$,
+and $c$ has associated integer $3$.  We depict the elements of $\p(S)$
+and the corresponding binary strings in the following table.
+\begin{center}
+\fbox{
+\begin{tabular}{c|c|c}
+Binary string & Set of integers & Subset of $S$ \\
+\hline
+$000$ & $\emptyset$ & $\emptyset$ \\
+$001$ & $\{3\}$     & $\{c\}$ \\
+$010$ & $\{2\}$     & $\{a\}$ \\
+$011$ & $\{2,3\}$   & $\{a,c\}$ \\
+$100$ & $\{1\}$     & $\{b\}$ \\
+$101$ & $\{1,3\}$   & $\{b,c\}$ \\
+$110$ & $\{1,2\}$   & $\{a,b\}$ \\
+$111$ & $\{1,2,3\}$ & $\{a,b,c\} =S$
+\end{tabular}
+}
+\end{center}
+
+Back to the Proposition: We have verified the following: {\em The
+  number of length-$n$ binary strings is the same as the number of
+  elements in the power set of $S$!}  The desired numeration thus
+follows by the ($b=2$) instance of Proposition~\ref{thm:b-ary
+  strings}.  \qed
+
+\begin{quote}
+The binary string that we have constructed to represent each set of
+integers $N \subseteq \{0, 1, \ldots, n-1\}$ is called the {\it
+(length-$n$) characteristic vector}\index{characteristic vector}
+{\it of the set} $N$.  Of course, the finite set $N$ has
+characteristic vectors of all finite lengths.  Generalizing this idea,
+{\em every} set of integers $N \subseteq \N$, whether finite or
+infinite, has an {\em infinite} characteristic vector, which is formed
+in precisely the same way as are finite characteristic vectors, but
+now using the set $\N$ as the base set.
+\end{quote}
+
+
+
+
+
+
+ within discrete frameworks, including introducing
+discrete probability/likelihood as a ratio:
+\[ 
+\frac{\mbox{number of targeted events}}{\mbox{number of possible events}}
+\]
+
+
+\section{Congruences and Modular Arithmetic}
+
+
+
+\section{Numbers and Numerals}
+
+\subsection{Number vs.~Numeral: Object vs.~Name}
+
+
+\subsection{Geometric series and positional number systems}
+
+The relation between simple geometric series and numeration within
+positional number systems -- including changing bases in such systems.
+
+
+\section{Useful Nonalgebraic Notions}
+\label{sec:extra-functions}
+
+\subsection{Nonalgebraic Notions Involving Numbers}
+
+\ignore{****************
+\addcontentsline{toc}{paragraph}{Floors and Ceilings}
+{\small\sf Floors and ceilings}.
+%
+Given any real number $x$, we denote by $\lfloor x \rfloor$ the {\em
+  floor}\index{$\lfloor x \rfloor$: the floor of real number $x$}
+(or {\em integer part})\index{$\lfloor x \rfloor$: the integer part
+  of real number $x$}
+%
+of $x$, which is the largest integer that that does not exceed $x$.
+Symmetrically, we denote by $\lceil x \rceil$ the 
+{\em ceiling}\index{$\lceil x \rceil$: the ceiling of real number $x$}
+of $x$, which is the smallest integer that is at least as large as
+$x$.  For any nonnegative integer $n$,
+\[ \lfloor n \rfloor  \ = \ \lceil n \rceil \ = \ n;  \]
+for any positive rational number $n + p/q$, where $n$, $p$, and $q$
+are positive integers and $p < q$,
+\[ \lfloor n + p/q \rfloor  \ = \ n, \ \mbox{ and } \
+\lceil n+ p/q \rceil \ = \ n+1.  \]
+
+\addcontentsline{toc}{paragraph}{Absolute values/Magnitudes}
+{\small\sf Absolute values, or, magnitudes}
+%
+Given any real number $x$, positive or negative, we denote by $|x|$
+the {\it absolute value}\index{$|x|$: the absolute value of real number $x$}
+or {\it magnitude}\index{$|x|$: the magnitude of real number $x$}
+of $x$.  If $x \geq 0$, then $|x| = x$; if $x < 0$, then $|x| = -x$.
+
+**********}
+
+
+If the intended curriculum will approach more sophisticated
+application areas such as robotics or data science or information
+retrieval or data mining (of course, at levels consistent with the
+students' preparation), then one would do well to insist on
+familiarity with notions such as:
+
+
+
+\section{Advanced Topics}
+
+\subsection{Measures of distance in tuple-spaces}
+
+including the following
+norms/metrics: $L_1$ (Manhattan, or, rook's-move distance), $L_2$
+(Euclidean distance); $L_\infty$ (King's-move distance).
+
+
+\subsection{Edit-distance: a measure of closeness in {\em string spaces}}
+

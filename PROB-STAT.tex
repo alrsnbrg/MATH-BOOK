@@ -1,0 +1,102 @@
+%version of 01-30-18
+
+\chapter{PROBABILITY AND STATISTICS}
+
+Elements of probability theory and statistics infuse every area of
+computing.  The practicality of many algorithms that are
+experientially the most efficient for their target tasks depend on the
+{\em distribution} of inputs in ``real" situations.  Design
+methodologies for crucial complex circuits must acknowledge the {\em
+  mean times to failure} of the critical components of the circuits.
+Sophisticated searching algorithms must take into account the relative
+{\em likelihoods} of finding one's goal in the various optional search
+directions.  Analyzing and understanding large corpora of data
+requires a variety of methodologies that build on the concepts of {\em
+  clustering} and/or {\em decomposition}.
+
+A student needs at least an introduction to the foundations of
+probability and statistics to even understand, all the moreso to
+master, the terms highlighted in the preceding paragraph.  We outline
+many of the key concepts that a student must be exposed to in the
+following subsections.
+
+
+\section{The Elements of Combinatorial Probability}
+
+Perhaps the easiest and most engaging way to introduce ``probability
+via counting" is by calculating the comparative likelihoods of various
+deals in $5$-card poker and of various rolls of a pair of dice.  The
+arithmetic required for this discussion is elementary and the
+``application" to gambling of interest even to non-gamblers: ``Why is
+such a deal in poker (say, a straight) worth more than another (say,
+three of a kind)?"  One can also introduce in this setting concepts
+such as randomness, bias, etc., that are so important in the design of
+experiments and the analysis of their outcomes.
+
+\section{Toward a Basic Understanding of Statistics}
+
+Most students whose interest tend to the empirical will likely ``do"
+statistics with the aid of apps, rather than by explicitly writing
+programs that perform the required calculations.  That said, all
+students should understand the crucial notion of {\em random variable}
+and should be conversant with the most common statistical
+distributions.  ``Conversant" in this context should include complete
+understandings of the (low-numbered) moments of {\em at least} the
+{\em uniform} and {\em exponential} distributions.  They should know
+how to compute, say, the means and variances of various distributions
+— and, most importantly, they should {\em understand} the sense in
+which the variance of a distribution give {\em important} information
+that is not available from the mean.  All of this is prerequisite to
+rigor in experimentation.
+
+\subsubsection{The Elements of Empirical Reasoning}
+
+Empirical reasoning does not convey the certitude that formal
+reasoning does.  Students should understand how to craft experiments
+in a way that collects the ``right'' data.  The should then be
+able---perhaps just with statistical packages---to interpret the
+results they collect and to understand what conclusions are
+justifiable.  {\em It is essential that all students understand the                  
+  ditinction between {\em positive correlation} and {\em causation}!}
+(Most of the public would seem to flunk that test.)
+
+In order to satisfy the preceding demands, students should understand
+enough about statistics---including definitions and meanings related
+to distributions and their moments---to understand what conclusions
+can be made based on experimental results, and to understand how to
+describe conclusions in a way that is supported by the statistics.
+
+\section{Beyond the Basics}
+
+As students are introduced to modern topics within computing, whether
+at the level of a Computing Literacy course or a post-core technical
+course, they will have to master a variety of more specialized topics
+that combine pieces of the elements we have discussed in this essay.
+While these topics are beyond the level of generality aimed at in this
+essay, some may be appropriate prerequisites to programs that have
+some specialized foci.
+\begin{itemize}
+\item
+Issues relating to {\em clustering} find application in applicatios as
+diverse as: {\em linear-algebraic computations}, {\em data mining},
+{\em design and layout of digital circuitry}.
+
+\item
+Issues building on {\em graph separation/decomposition} are
+encountered when studying: {\em linear-algebraic computing}, {\em
+  fault-tolerant design}, {\em load balancing}.
+
+\item
+Many issues relating to {\em fault/failure tolerance} and {\em data
+  analytics} benefit from study using {\em random walks} (at least in
+one dimension).
+
+\item
+Many useful ideas regarding the {\em encoding and manipulation of
+  data} can be gleaned from the elements of {\em information theory}
+and {\em computer arithmetic}.
+\end{itemize}
+The preceding list is really endless.  Hopefully readers will be
+inspired by our few examples to compile a longer version that is
+appropriate for their particular environments.
+

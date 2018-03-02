@@ -1,0 +1,136 @@
+% version of 02-15-18
+\documentclass[envcountchap]{svmono}
+%\usepackage{amsfonts,amsmath,amsthm,amssymb,fullpage,makeidx,epsfig}
+
+\usepackage{mathptmx}
+\usepackage{amssymb}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{epsfig}
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+
+\setcounter{tocdepth}{5}
+
+%\newtheorem{note}{Note}
+\newtheorem{corol}{Corollary}[chapter]
+\newtheorem{prop}{Proposition}[chapter]
+%\newtheorem{lem}{Lemma}[chapter]
+%\newtheorem{thm}{Theorem}[chapter]
+
+\makeindex
+
+\begin{document}
+
+
+\input preamble
+
+\author{Arnold L.~Rosenberg \and Denis Trystram}
+\title{Understand Mathematics, Understand Computing}
+\subtitle{Discrete Mathematics that All Computing Students Should Know}
+
+\maketitle
+
+\begin{center}
+{\Large\bf Understand Mathematics, Understand Computing} \\
+{\large\it Discrete Mathematics that All Computing Students Should Know}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{ccc}
+{\large Arnold L.~Rosenberg} & & {\large Denis Trystram} \\
+Distinguished University Professor Emeritus
+  & & Distinguished Professor \\
+University of Massachusetts  & & University of Grenoble \\
+Amherst, MA 01003, USA       & & Grenoble, FRANCE \\
+{\small\tt rsnbrg@cs.umass.edu} & & {\small\tt denis.trystram@imag.fr}
+\end{tabular}
+\end{center}
+
+\vspace*{.25in}
+
+{\it Mathematics is the foundation on which the edifice of Computing
+  stands}
+
+\begin{figure}[h]
+\centerline{\epsfig{figure=MATH.eps,height=5truein}}
+\end{figure}
+
+
+
+%{\small
+%\copyright 2006,2007,2008,2009 Arnold L.~Rosenberg} \\
+%{\small All rights reserved}
+%\end{center}
+
+
+\frontmatter
+
+%\input{dedic}
+%*********REVISED 01-31-08
+
+%\addcontentsline{toc}{chapter}{Capsule Biography of the Author}
+%\input{capsulebio}
+%*********REVISED 07-02-08
+
+\tableofcontents
+
+%\addcontentsline{toc}{chapter}{Preface and Manifesto}
+%\input{preface}%chapter
+%*********REVISED 02-04-08
+
+
+%\addcontentsline{toc}{chapter}{List of Acronyms}
+%\input{acronym}
+
+
+\mainmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{INTRO}%chapter
+%*********REVISED 01-30-18
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{SETS-BA-LO}%chapter
+%*********REVISED 02-15-18
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{ARITHMETIC}%chapter
+%*********REVISED 02-15-18
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{GRAPHS-TREES}%chapter
+%*********REVISED 01-30-18
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{ASYMPTOTICS}%chapter
+%*********REVISED 01-30-18
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{PROB-STAT}%chapter
+%*********REVISED 01-30-18
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\addcontentsline{toc}{chapter}{V \ Sample Exercises}
+%\input{Exercises}%part
+
+\backmatter
+
+\input{Citations}
+%*********REVISED 02-15-18
+
+\printindex
+
+
+\end{document}

@@ -1,0 +1,300 @@
+%version of 01-30-18
+
+\chapter{GRAPH-THEORETIC ENTITIES}
+
+\section{Basic Graph-Theoretic Topics}
+
+Graphs provide one of the richest technical and conceptual frameworks
+in the world of computing.  They provide concrete representations of
+manifold data structures, hence must be well understood in preparation
+for a ``Data Structures and Algorithms'' course.  They embody tangible
+abstractions of relationships of all sorts, hence must be well
+understood in order to discuss entities as varied as web-search
+engines and social networks with precision and rigor.  As with most of
+the topics we are discussing, graph-oriented concepts must be taught
+``in layers''.  All students must be conversant with the use of graphs
+to represent and reason about a variety of complicated relationships,
+but the degree of sophistication that an individual student requires
+depends both on the abilities of the student and the range of
+applications that will appear in the student's program.  The
+fundamental concepts in this essay should be understood by all
+students---although each can be developed with more texture and nuance
+within the context of specific application domains.
+
+Many developments in computing technology over recent decades have
+made it imperative that graphs no longer be viewed by students as the
+static objects introduced, e.g., as abstractions of data struntures.
+Applications ranging from databases to web-search engines to social
+networks demand an appreciation of graphs as dynamic objects.  This
+change in perspective affects many aspects of the mathematical
+prerequisites for any CS/CE program.
+
+\subsection{Fundamental Notions}
+
+The basic components of graphs are {\em nodes/vertices} (one
+encounters both terms in the literature) and the {\em edges} that
+interconnect them.  When a graph is {\em undirected}, an edge connotes
+some sort of sibling-like relationship among nodes of ``equal''
+status.  When a graph is {\em directed} (sometimes referred to as a
+{\em digraph}), an edge connotes an ``unequal'' relationship such as
+parenthood or priority or dependence; edges in directed graphs are
+often termed {\em arcs}.  In many situations involving directed
+graphs, it is important to recognize The {\em dual} of a digraph $G$
+is a digraph obtained by reversing all of $G$'s arcs.  One sometimes
+encounters situations when arguments about, or operations on, a
+digraph $G$ can be ``translated'' to arguments about, or operations
+on, $G$'s dual with only clerical effort.  A {\em subgraph} $G'$ of a
+graph $G$ is a graph whose nodes are a subset of $G$'s and whose edges
+are a subset of $G$'s that interconnect only nodes of $G'$.  A {\em
+  path} in an undirected graph is a sequence of nodes within which
+every adjacent pair is connected by an edge.  A path is a {\em cycle}
+if all nodes in the sequence are distinct, except for the first and
+last, which are identical.  Paths and cycles in directed graphs are
+defined similarly, except that every adjacent pair of nodes must be
+connected by an arc, and all arcs must ``point in the same
+direction.''  
+
+{\small\sf Getting formal}.
+%
+A {\it directed graph} ({\it digraph}, for short) $\g$ is given by a
+set of {\it nodes} $\n_{\fg}$ and a set of {\it arcs} (or {\it
+  directed edges}) $\a_{\fg}$.  Each arc has the form $(u \rightarrow
+v)$, where $u, v \in \n_{\fg}$; we say that this arc goes {\em from}
+$u$ {\em to} $v$.  A {\it path} in $\g$ is a sequence of arcs that
+share adjacent endpoints, as in the following path from node $u_1$ to
+node $u_n$:
+\begin{equation}
+\label{e.path}
+(u_1 \rightarrow u_2), \ (u_2 \rightarrow u_3), \ \ldots, \ (u_{n-2}
+        \rightarrow u_{n-1}), \ (u_{n-1} \rightarrow u_n).
+\end{equation}
+It is sometimes useful to endow the arcs of a digraph with labels from
+an alphabet $\Sigma$.  When so endowed, the path (\ref{e.path}) would
+be written
+\[
+(u_1 \stackrel{\lambda_1}{\rightarrow} u_2), \ 
+(u_2 \stackrel{\lambda_2}{\rightarrow} u_3), \ \ldots, \ 
+(u_{n-2} \stackrel{\lambda_{n-2}}{\rightarrow} u_{n-1}), \ 
+(u_{n-1} \stackrel{\lambda_{n-1}}{\rightarrow} u_n),
+\]
+where the $\lambda_i$ denote symbols from $\Sigma$.  If $u_1 = u_n$,
+then we call the preceding path a {\em cycle}.\index{cycle (in a digraph)}
+
+An {\em undirected graph} is obtained from a directed graph by
+removing the directionality of the arcs; the thus-beheaded arcs are
+called {\em edges}.  Whereas we say: \\
+\hspace*{.35in}the {\em arc} $(u,v)$ goes {\em from} node $u$ {\em to}
+node $v$ \\
+we say: \\
+\hspace*{.35in}the undirected edge $\{u,v\}$ goes {\em between} nodes
+$u$ and $v$ \\
+or, more simply: \\
+\hspace*{.35in}the undirected edge $\{u,v\}${\em connects} nodes $u$
+and $v$.  \\
+{\em Undirected} graphs are usually the default concept, in the
+following sense: {\em When $\g$ is described as a ``graph,'' with no
+  qualifier ``directed'' or ``undirected,'' it is understood that $\g$
+  is an undirected graph.}
+
+
+\subsection{Graph evolution and decomposition}
+
+Any course on algorithms will discuss graphs, especially trees, that
+evolve over time.  Such structures arise in the study of ``classical''
+algorithmic topics such minimum-spanning-tree and branch-and-bound
+algorithms, as well as in the study of more modern topics such as
+social networks and internetworks.  For the most part, the mathematics
+already appearing in this essay suffices for these studies: the students
+must assimilate new algorithmic notions, not new mathematics.  That
+said, students will be challenged to utilize the mathematical devices
+that they have (hopefully) mastered in new, more sophisticated, ways.
+Instructors who wish to lead their students to even a casual
+understanding of emerging modalities and platforms for computing are
+thereby challenged to teach required mathematical preliminaries using
+exemplars that include these new modalities and exemplars.
+
+A fundamental variety of relevant notions within the study of graphs
+reside in the notions known in various contexts via terms such as {\em
+  graph separators} or {\em graph bisection}.  The key idea that
+underlies these notions is that certain graph-theoretic structures
+interconnect their graphs' constituent nodes more or less densely ---
+and the type and level of interconnectivity has important algorithmic
+consequences.  In such situations, the student must understand how the
+phenomenon/a modeled by the graphs of interest are elucidated by the
+way a graph can be broken into subgraphs by excising nodes or edges.
+When discussing communication-related structures, for instance, graph
+are often used to model the individual pairwise communications that
+must occur in order to accomplish the desired overall communication
+(such as a broadcast).  There is often a provable tradeoff between the
+number of such pairwise communications and the overall time for the
+completion of the overall task.  As another example, when discussing
+social networks, one can pose questions such as: which node in a
+network is best to connect to (when joining the network) in order to
+best facilitate one's interactions or influence within the community.
+The latter topic leads, e.g., to the study of {\em power-law}
+networks, a topic that would not be studied in depth in any early
+course; indeed, the structure of these networks is not yet well
+understood even in advanced settings.
+
+\subsection{Trees}
+
+Within the world of graphs, trees occupy a place of honor.  In their
+undirected form, the are defined by the proerty of containing no
+cycles.  They then provide the minimal interconnection structure that
+provides a path connecting every pair of nodes.  Of course, trees
+appear also in directed form.  Among directed trees, a very important
+subclass are those that have a {\em root}, i.e., a node that has a
+directed path to every other node of the tree.  In applications,
+rooted trees represent hierarchical organizations (as do families when
+viewed generationally).
+
+More formally: {\em rooted trees} are a class of {\em acyclic}
+digraphs.  Paths in trees that start at the root are often called {\em
+  branches}.  The {\em acyclicity} of a tree $\t$ means that for any
+branch of $\t$ of the form (\ref{e.path}), we cannot have $u_1 = u_n$,
+for this would create a cycle.  Each rooted tree $\t$ has a designated
+{\em root node} $u_n \in \n_{\ft}$ that resides at the end of a branch
+(\ref{e.path}) that starts at $r_{\ft}$ (so $u_1 = r_{\ft}$) is said
+to reside at {\em depth} $n-1$ in $\t$; by convention, $r_{\ft}$ is
+said to reside at depth $0$.  $\t$'s root $r_{\ft}$ has some number
+(possibly $0$) of arcs that go from $r_{\ft}$ to its {\em children,}
+each of which thus resides at depth $1$ in $\t$; in turn, each child
+has some number of arcs (possibly $0$) to its children, and so on.
+(Think of a family tree.)  For each arc $(u \rightarrow v) \in
+A_{\ft}$, we call $u$ a {\it parent} of $v$, and $v$ a {\it child} of
+$u$, in $\t$; clearly, the depth of each child is one greater than the
+depth of its parent.  Every node of $\t$ except for $r_{\ft}$ has
+precisely one parent; $r_{\ft}$ has no parents.  A childless node of a
+tree is a {\em leaf}.  The transitive extensions of the parent and
+child relations are, respectively, the {\em ancestor} and {\em
+  descendant} relations.  The {\em degree} of a node $v$ in a tree is
+the number of children that the node has, call it $c_v$.  If every
+nonleaf node in a tree has the same degree $c$, then we call $c$ the
+{\em degree of the tree}.
+
+\ignore{***********
+It is sometimes useful to have a symbolic notation for the ancestor
+and descendant relations.  To this end, we write $(u \Rightarrow v)$
+to indicate that node $u$ is an ancestor of node $v$, or equivalently,
+that node $v$ is a descendant of node $u$.  If we decide for some
+reason that we are not interested in really distant descendants of the
+root of tree $\t$, then we can {\em truncate} $\t$ at a desired depth
+$d$ by removing all nodes whose depths exceed $d$.  We thereby obtain
+the {\em depth-$d$ prefix} of $\t$.
+
+
+Figure \ref{fig.graph-samples} depicts an arc-labeled rooted tree $\t$
+whose arc labels come from the alphabet $\{a,b\}$.  $\t$'s arc-induced
+relationships are listed in Table~\ref{tab.graph-samples}.
+\begin{figure}[htb]
+\centerline{\epsfig{figure=graph.sample.eps,height=4truecm}}
+\caption{An arc-labeled rooted tree $\t$ whose arc labels come from
+  the alphabet $\{a,b\}$.  (Arc labels have no meaning; they are just
+  for illustration.)
+\label{fig.graph-samples}}
+\end{figure}
+\begin{table}[htb]
+{\small
+\begin{center}
+\fbox{
+\begin{tabular}{c||c|c|c|c}
+\multicolumn{5}{c}{The arc-labeled rooted tree $\t$ of
+  Figure \ref{fig.graph-samples}} \\
+\hline
+Node            & Children & Parent & Descendants & Ancestors \\
+\hline
+\hline
+$r_{\ft} = u_0$ 
+& $u_1$
+& none & 
+$u_1, u_2, \ldots, u_k, v_1, v_2, \ldots, v_k,
+w_1, w_2, \ldots, w_k$
+& none \\
+\hline
+$u_1$
+& $u_2, v_1$
+& $u_0$ & 
+$u_2, \ldots, u_k, v_1, v_2, \ldots, v_k, w_1, w_2, \ldots, w_k$
+& $u_0$ \\
+\hline
+$u_2$
+& $u_3, v_2$
+& $u_1$ & 
+$u_3, \ldots, u_k, v_2, \ldots, v_k, w_2, \ldots, w_k$
+& $u_0$ \\
+\hline
+ $\vdots$ & $\vdots$ & $\vdots$ &  $\vdots$ &  $\vdots$ \\
+\hline
+$u_k$
+& $v_k$ 
+& $u_{k-1}$ & 
+$v_k, w_k$
+& $u_0, u_1, \ldots, u_{k-1}$ \\
+\hline
+$v_1$
+& $w_1$ 
+& $u_1$ & 
+$w_1$
+& $u_0, u_1$ \\
+\hline
+$v_2$
+& $w_2$
+& $u_2$ & 
+$w_2$
+& $u_0, u_1, u_2$ \\
+\hline
+ $\vdots$ & $\vdots$ & $\vdots$ &  $\vdots$ &  $\vdots$ \\
+\hline
+$v_k$
+& $w_k$
+& $u_k$ & 
+$w_k$
+& $u_0, u_1, \ldots, u_k$ \\
+\hline
+$w_1$
+& none
+& $v_1$ & 
+none
+& $u_0, u_1, v_1$ \\
+\hline
+$w_2$
+& none &
+$v_2$ & 
+none
+& $u_0, u_1, u_2, v_2$ \\
+\hline
+$w_k$
+& none
+& $v_k$ & 
+none
+& $u_0, u_1, \ldots, u_k, v_k$
+\end{tabular}
+}
+\end{center}
+}
+\caption{A tabular description of the rooted tree $\t$ of
+  Figure \ref{fig.graph-samples}.  \label{tab.graph-samples}}
+\end{table}
+***************}
+
+
+
+\section{Hypergraphs: an advanced topic}
+
+When studying certain computing-related topics, one will
+need a generalization of graphs called {\em hypergraphs}.  A
+hypergraph has nodes that are analogous to the nodes of a graph, but
+in place of edges a hypergraph has {\em hyperedges}.  Each hyperedge
+is a set of nodes whose size is not restricted to $2$; thus,
+hypergraphs represent internode relationships that are not ``binary''.
+A simple example can be framed by describing {\em bus-connected}
+systems, such as occur in certain genres of digital circuits and
+certain message-passing systems.  The underlying idea is that nodes
+that coreside in a hyperedge represent agents that ``hear'' all
+messages simultaneously, or equi-potential points in a network.
+Because of their inherent complexity, hypergraphs as graph-theoretic
+objects are usually relegated to advanced courses, but specific
+concrete instantiations, exemplified by bus-oriented communication and
+digital circuits should be accessible even to early students.
+
+

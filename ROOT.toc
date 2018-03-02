@@ -1,0 +1,96 @@
+\contentsline {chapter}{\numberline {1}INTRODUCTION}{1}
+\contentsline {section}{\numberline {1.1}Overview}{1}
+\contentsline {section}{\numberline {1.2}The Elements of Rigorous Reasoning}{2}
+\contentsline {subsection}{\numberline {1.2.1}Basic Reasoning}{2}
+\contentsline {subsubsection}{\numberline {1.2.1.1}The Elements of Formal Reasoning}{2}
+\contentsline {subsubsection}{\numberline {1.2.1.2}The Elements of Empirical Reasoning}{2}
+\contentsline {section}{\numberline {1.3}Our Approach to Mathematical Preliminaries}{3}
+\contentsline {chapter}{\numberline {2}SETS, BOOLEAN ALGEBRA, AND LOGIC}{5}
+\contentsline {section}{\numberline {2.1}Sets}{5}
+\contentsline {subsection}{\numberline {2.1.1}Fundamental Set-Related Concepts}{5}
+\contentsline {subsection}{\numberline {2.1.2}Operations on Sets}{6}
+\contentsline {section}{\numberline {2.2}Binary Relations}{8}
+\contentsline {subsection}{\numberline {2.2.1}The Formal Notion of Binary Relation}{8}
+\contentsline {subsection}{\numberline {2.2.2}Order Relations}{9}
+\contentsline {subsection}{\numberline {2.2.3}Equivalence Relations}{10}
+\contentsline {subsection}{\numberline {2.2.4}Functions}{11}
+\contentsline {section}{\numberline {2.3}Boolean Algebras}{13}
+\contentsline {subsection}{\numberline {2.3.1}The Elements of Boolean Algebra}{13}
+\contentsline {subsubsection}{\numberline {2.3.1.1}The Boolean Connectives}{13}
+\contentsline {subsubsection}{\numberline {2.3.1.2}The Axioms of the System}{13}
+\contentsline {subsection}{\numberline {2.3.2}Two Special Boolean Algebras}{13}
+\contentsline {subsubsection}{\numberline {2.3.2.1}The Algebra of Sets}{13}
+\contentsline {subsubsection}{\numberline {2.3.2.2}Propositional Logic as an Algebra: The Propositional Calculus}{13}
+\contentsline {paragraph}{A. The Fundamental Logical Connectives}{13}
+\contentsline {paragraph}{A. The logical connectives algebraically}{14}
+\contentsline {paragraph}{B. The logical connectives algebraically}{14}
+\contentsline {paragraph}{C. Logic as an algebra}{14}
+\contentsline {paragraph}{D. Logic via truth values}{14}
+\contentsline {subsection}{\numberline {2.3.3}Connecting Mathematical Logic with Logical Reasoning}{16}
+\contentsline {chapter}{\numberline {3}ARITHMETIC}{17}
+\contentsline {section}{\numberline {3.1}Numbers and Numerals}{17}
+\contentsline {subsection}{\numberline {3.1.1}Numbers}{18}
+\contentsline {subsubsection}{\numberline {3.1.1.1}The integers}{19}
+\contentsline {paragraph}{A. Integers and the number line}{19}
+\contentsline {paragraph}{B. Prime numbers}{20}
+\contentsline {subsubsection}{\numberline {3.1.1.2}The rational numbers}{21}
+\contentsline {subsubsection}{\numberline {3.1.1.3}The real numbers}{21}
+\contentsline {subsubsection}{\numberline {3.1.1.4}The complex numbers}{24}
+\contentsline {subsection}{\numberline {3.1.2}Order within the number system}{25}
+\contentsline {subsection}{\numberline {3.1.3}Numerals}{25}
+\contentsline {paragraph}{A. Positional number systems}{25}
+\contentsline {paragraph}{B. Scientific notation}{26}
+\contentsline {paragraph}{C. Exact arithmetic}{26}
+\contentsline {section}{\numberline {3.2}Arithmetic and Its Laws}{26}
+\contentsline {subsection}{\numberline {3.2.1}The Tools of Arithmetic}{26}
+\contentsline {subsubsection}{\numberline {3.2.1.1}Unary (single-argument) operations}{27}
+\contentsline {paragraph}{A. Negating numbers}{27}
+\contentsline {paragraph}{B. Reciprocating numbers}{27}
+\contentsline {paragraph}{C. Floors and ceilings}{27}
+\contentsline {paragraph}{D. Absolute values, magnitudes}{27}
+\contentsline {subsubsection}{\numberline {3.2.1.2}Binary (two-argument) operations}{28}
+\contentsline {paragraph}{A. Addition and Subtraction}{28}
+\contentsline {paragraph}{B. Multiplication and Division}{28}
+\contentsline {subsection}{\numberline {3.2.2}The Laws of Arithmetic}{29}
+\contentsline {subsection}{\numberline {3.2.3}Rational Arithmetic: A Worthwhile Exercise}{31}
+\contentsline {section}{\numberline {3.3}Basic Algebraic Concepts and Their Manipulations}{32}
+\contentsline {subsection}{\numberline {3.3.1}Powers and polynomials}{32}
+\contentsline {subsection}{\numberline {3.3.2}Exponentials and Logarithms}{33}
+\contentsline {subsubsection}{\numberline {3.3.2.1}Basic definitions}{33}
+\contentsline {paragraph}{A. Exponential functions}{33}
+\contentsline {paragraph}{B. Logarithmic functions}{33}
+\contentsline {subsubsection}{\numberline {3.3.2.2}Fun facts about exponentials and logarithms}{34}
+\contentsline {subsubsection}{\numberline {3.3.2.3}Exponentials and logarithms within information theory}{35}
+\contentsline {subsection}{\numberline {3.3.3}Arithmetic and geometric sequences and series}{36}
+\contentsline {paragraph}{A. Arithmetic sequences and series}{36}
+\contentsline {paragraph}{B. Geometric sequences and series}{36}
+\contentsline {paragraph}{C. An amusing result about numerals}{37}
+\contentsline {subsection}{\numberline {3.3.4}Linear recurrences}{38}
+\contentsline {section}{\numberline {3.4}Elementary counting}{39}
+\contentsline {subsection}{\numberline {3.4.1}Binary Strings and Power Sets}{39}
+\contentsline {section}{\numberline {3.5}Congruences and Modular Arithmetic}{41}
+\contentsline {section}{\numberline {3.6}Numbers and Numerals}{41}
+\contentsline {subsection}{\numberline {3.6.1}Number vs.\nobreakspace {}Numeral: Object vs.\nobreakspace {}Name}{41}
+\contentsline {subsection}{\numberline {3.6.2}Geometric series and positional number systems}{41}
+\contentsline {section}{\numberline {3.7}Useful Nonalgebraic Notions}{41}
+\contentsline {subsection}{\numberline {3.7.1}Nonalgebraic Notions Involving Numbers}{41}
+\contentsline {section}{\numberline {3.8}Advanced Topics}{41}
+\contentsline {subsection}{\numberline {3.8.1}Measures of distance in tuple-spaces}{41}
+\contentsline {subsection}{\numberline {3.8.2}Edit-distance: a measure of closeness in {\em string spaces}}{41}
+\contentsline {chapter}{\numberline {4}GRAPH-THEORETIC ENTITIES}{43}
+\contentsline {section}{\numberline {4.1}Basic Graph-Theoretic Topics}{43}
+\contentsline {subsection}{\numberline {4.1.1}Fundamental Notions}{43}
+\contentsline {subsection}{\numberline {4.1.2}Graph evolution and decomposition}{44}
+\contentsline {subsection}{\numberline {4.1.3}Trees}{45}
+\contentsline {section}{\numberline {4.2}Hypergraphs: an advanced topic}{46}
+\contentsline {chapter}{\numberline {5}ASYMPTOTICS}{47}
+\contentsline {section}{\numberline {5.1}The language of asymptotics}{47}
+\contentsline {section}{\numberline {5.2}The ``uncertainties'' in asymptotic relationships}{48}
+\contentsline {section}{\numberline {5.3}Inescapable complications}{49}
+\contentsline {chapter}{\numberline {6}PROBABILITY AND STATISTICS}{51}
+\contentsline {section}{\numberline {6.1}The Elements of Combinatorial Probability}{51}
+\contentsline {section}{\numberline {6.2}Toward a Basic Understanding of Statistics}{52}
+\contentsline {subsubsection}{\numberline {6.2.0.1}The Elements of Empirical Reasoning}{52}
+\contentsline {section}{\numberline {6.3}Beyond the Basics}{52}
+\contentsline {chapter}{References}{55}
+\contentsline {chapter}{Index}{59}

@@ -1,0 +1,119 @@
+%version of 02-01-18
+
+\chapter{INTRODUCTION}
+
+\section{Overview}
+
+In the early days of computing, all aspects of the field were
+considered the domain of the ``techies''---the engineers and
+scientists and mathematicians who designed the early computers and
+figured out how to use them to solve a range of problems that is
+expanding even to this day.  Back then, one expected every
+computer-oriented professional to have a mastery of many mathematical
+topics.  Times---and the field of computing---have changed: classical
+computing curricula, which have traditional led to a BS degree within
+a school of science or engineering have been joined by curricula that
+lead to a BA degree or a degree in IT or in business or \ldots.
+Within this new world, many aspiring computer professionals arguably
+need little knowledge of mathematics.  However, many argue that the
+computing field suffers for this lack of mathematics, which has
+weakened the ability of many practitioners to design and perform
+experiments, to analyze their results, and to formulate well-reasoned
+conclusions based on these results.  This situation has denied
+computer science the popular confidence enjoyed by other empirical
+disciplines; indeed, many would question the math-deprived
+practitioners' ability to reason rigorously about basic computational
+phenomena.  Yet others, however, argue that such ``scientific'' acumen
+is not needed by practitioners in many of the newer segments of the
+computing field.
+
+The preceding discussion is important to computing educators because
+we serve a large population of students, with quite diverse needs and
+aspirations.  We strive to keep this diversity in mind within this
+essay.  As we discuss a range of mathematical topics for possible
+inclusion as prerequisites for the undergraduate study of computing,
+we try to indicate why the selected topics are needed.  Readers can
+then evaluate which topics are needed for students enrolled in their
+computing program.
+
+\section{The Elements of Rigorous Reasoning}
+
+
+\subsection{Basic Reasoning}
+
+{\em Distinguishing name from object}.
+%
+A fundamental stumbling block in the road to cogent reasoning arises
+from the inability to distinguish names from the objects they denote.
+A prime example within the world of computing resides in the inability
+to distinguish a function (which can be viewed as an infinite set of
+argument-value pairs) from a program, which can be viewed as a name
+for the function.  {\bf Note} that the often-used view of a function
+as a {\em rule} for assigning values to arguments should be avoided,
+because it suggests -- \underline{\em erroneously} -- that an
+implementable such rule always exists!
+
+{\em Quantitative reasoning}.
+%
+Students should understand the foundational distinction between
+``growing without bound'' and being innite.  Within this theme, they
+should appreciate situations such as the following.  Every integer,
+and every polynomial with integer coefficients, is finite, but there
+are infinitely many integers and infinitely many polynomials.
+Students should be able to verify (cogently but not necessarily via
+any particular formalism) assertions such as the following.
+\begin{itemize}
+\item
+Let us be given polynomials $p(x)$ of degree $a$ and $q(x)$ of degree
+$b > a$, where $a, b$ need not be integers.  There must exist a
+constant $X_{p,q}$ (i.e., a constant that depends on the properties of
+polynomials $p$ and $q$) such that for all $x > X_{p,q}$, $p(x) <
+q(x)$.
+
+Thus, polynomials having bigger degrees eventually {\em
+  majorize}---i.e., have larger values than---polynomials having
+smaller degrees.
+
+\item
+Continuing with polynomial $q$ of degree $b$: For any real number $c >
+1$, there exists a constant $Y_{c;q}$ (i.e., a constant that depends
+on the properties of polynomial $q$ and constant $c$) such that for
+all $x > Y_{c;q}$, $c^x > q(x)$.
+
+Thus, exponential functions eventually {\em majorize} polynomials.
+\end{itemize}
+
+\subsubsection{The Elements of Formal Reasoning}
+
+induction
+
+proof by contradiction
+
+\subsubsection{The Elements of Empirical Reasoning}
+
+Empirical reasoning does not convey the certitude that formal
+reasoning does.  
+
+
+
+\section{Our Approach to Mathematical Preliminaries}
+
+\hfill{\small\em
+``If your only tool is a hammer \ldots''
+}
+
+\vspace*{.25in}
+
+\noindent
+We now review a broad range of mathematical concepts that are central
+to the study and practice of CS/CE.  As we develop these concepts, we
+shall repeatedly observe instances of the following ``self-evident
+truth'' (which is what ``axiom'' means).
+
+\begin{quote}
+{\bf The conceptual axiom}.
+\index{conceptual axiom}
+{\em
+One's ability to think deeply about a complicated concept is always
+enhanced by having more than one way to think about the concept.}
+\end{quote}

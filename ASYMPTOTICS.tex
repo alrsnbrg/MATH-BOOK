@@ -1,0 +1,225 @@
+%version of 02-01-18
+
+\chapter{ASYMPTOTICS}
+\label{sec:asymptotics}
+
+{\em Asymptotics} can be viewed as a language and a system of
+reasoning that allow one to talk in a {\em qualitative} voice about
+{\em quantitative} topics.  We thereby generalize to arbitrary growth
+functions terms such as ``linear'', ``quadratic'', ``exponential'',
+and ``logarithmic''.
+
+Such a language and system are indispensable if one needs to reason
+about computational topics over a range of situations, such as a range
+(``all existing''?)  computer architectures and software systems.  As
+two simple examples: (1) Carry-ripple adders perform additions in time
+linear in the lengths $n$ of the summands (measured in number of bits)
+no matter what these lengths are. (2) Comparison-based sorting
+algorithms can sort lists of $n$ keys in time proportional to $n \log
+n$, but no faster---where the base of the logarithm depends on the
+characteristics of the computing platform.  More precise versions of
+the preceding statements require specication of the number $n$ and
+other details, possibly down to the clock speeds of the host
+computer's circuitry.
+
+\section{The language of asymptotics}
+
+The language of asymptotics, which has its origins in the field of
+Number Theory in the late 19th century, builds on the following
+terminology, which is likely what one would cover in an early
+undergraduate course.  More advanced aspects of the language would
+likely by beyond the needs of most students of computing, aside from
+specialists in advanced courses.  The basics of the language build on
+three primitive notations and notions.  Standard sources, such as any
+text on algorithm design and analysis, flesh out the following ideas.
+\begin{itemize}
+\item
+{\em The big-O notation}.
+%
+The assertion $f(x) = O(g(x))$ says, intuitively, that the function
+$f$ grows no faster than function $g$.  It is, thus, the asymptotic
+analogue of ``less than''.
+
+Formally:
+$f(x) = O(g(x))$
+
+means
+
+$(\exists c >0)(\exists x^{\#})(\forall x > x^{\#})
+[f(x) \leq c \cdot g(x)]$
+
+\item
+{\em The big-$\Omega$ notation}.
+%
+The assertion $f(x) = \Omega(g(x))$ says, intuitively, that the
+function $f$ grows at least as fast as function $g$.  It is, thus, the
+asymptotic analogue of ``greater than''.
+
+Formally:
+$f(x) = \Omega(g(x))$
+
+means
+
+$(\exists c >0)(\exists x^{\#})(\forall x > x^{\#})
+[f(x) \geq c \cdot  g(x)]$ \\
+
+\item
+{\em The big-$\Theta$ notation}.
+%
+The assertion $f(n) = \Theta(g(n))$ says, intuitively, that the
+function $f$ grows at the same rate as does function $g$.  It is,
+thus, the asymptotic analogue of ``equal to''.
+
+Formally:
+$f(x) = \Theta(g(x))$
+
+means
+
+$(\exists c_1 >0)(\exists c_2 >0)(\exists x^{\#})(\forall x > x^{\#})
+[c_1 \cdot g(x) \leq f(x) \leq c_2 \cdot  g(x)]$
+\end{itemize}
+One renders the preceding intuitive explanations precise by pointing
+out that the three specifies relations ($a$) take hold {\em
+  eventually}, i.e., only for large arguments to the functions $f$ and
+$g$, and ($b$) hold up to an unspecified constant of proportionality.
+
+\ignore{*********
+\subsubsection{Getting formal}
+
+{\small\sf Big-$O$, Big-$\Omega$, and Big-$\Theta$ notation}.%
+It is convenient to have terminology and a notation that allows us to
+talk about the rate of growth of one function as measured by the rate
+of growth of another.  We are interested in the exact growth rate, as
+well as upper and lower bounds on the growth rate.  We do have
+appropriate such language for certain rates of growth.  We can talk,
+for instance, about a linear growth rate or a quadratic rate or an
+exponential rate, to name just a few---and we get the desired bounds
+using the prefixes ``sub'' or ``super,'' as in ``subexponential'' and
+``superlinear''---but our repertoire of such terms is quite limited.
+Mathematicians working in the theory of numbers in the late nineteenth
+century established a notation that gives us an unlimited repertoire
+of descriptors for growth rates, via what has come to be called the
+big-$O$, big-$\Omega$, and big-$\Theta$ notations, which are
+collectively sometimes called {\em asymptotic notation}.\index{asymptotic notation}
+*******}
+
+\section{The ``uncertainties'' in asymptotic relationships}
+
+The formal definitions of all three of our asymptotic relationships
+are bracketed by two important quantifiers:
+\[ ``(\exists c >0)'' \ \ \ \mbox{ and } 
+ ``(\forall x > x^{\#})''.
+\]
+The former, {\em uncertain-size} quantifier, asserts that asymptotic
+notions describe functional behavior ``in the large''.  Thus, in
+common with more common qualitative descriptors of quantitative growth
+such as linear, quadratic, cubic, quartic, exponential, logarithmic,
+etc., asymptotic relationships give no infomation about constants of
+proportionality.  {\em We are not saying that constant factors do not
+  matter!  We are, rather, saying that we want to discuss growth
+  patterns \underline{in the large}.}
+
+The latter, {\em uncertain-time} quantifier asserts that asymptotic
+relationships between functions are promised to hold only
+``eventually'', i.e., ``for sufficiently large values of the argument
+$x$''.  Therefore, in particular, asymptotic notions cannot be
+employed to discuss or analyze quantities that can never grow beyond a
+fixed finite value.  The fact that all instances of a quantity
+throughout history have been below $N$ is immaterial, as long as it is
+conceivable that an instance larger than $N$ could appear at some time
+in the future.
+
+These quantifiers in particular distinguishes claims of asymptotic
+relationship from the more familiar definite inequalities such as
+``$f(x) \leq g(x)$'' or $f(x) \geq 7 \cdot g(x)$.  In fact, it is
+often easier to think about our three asymptotic bounding assertions
+as establishing {\em envelopes} for $f(x)$:
+\begin{itemize}
+\item
+Say that $f(x) = O(g(x))$.  If one draws the graphs of the functions
+$f(x)$ and $c \cdot g(x)$, then as one traces the graphs with
+increasing values of $x$, one eventually reaches a point $x^{\#}$
+beyond which the graph of $f(x)$ never enters the territory {\em
+  above} the graph of $c \cdot g(x)$.
+\item
+Say that $f(x) = \Omega(g(x))$.  This situation is the up-down mirror
+image of the preceding one: just replace the highlighted ``{\em
+above}'' with ``{\em below}.''
+\item
+Say that $f(x) = \Theta(g(x))$.  We now have a two-sided envelope:
+beyond $x^{\#}$, the graph of $f(x)$ never enters the territory {\em
+  above} the graph of $c_1 \cdot g(x)$ and never enters the territory
+{\em below} the graph of $c_2 \cdot g(x)$.
+\end{itemize}
+In addition to allowing one to make familiar growth-rate comparisons
+such as ``$n^{14} = O(n^{15})$'' and ``$1.001^n = \Omega(n^{1000})$,''
+we can now also make assertions such as ``$\sin x = \Theta(1)$,''
+which are much clumsier to explain in words.
+
+
+\noindent {\bf Beyond the big letters.}
+%
+There are ``small''-letter analogues of the preceding ``big''-letter
+asymptotic notations, but they are only rarely encountered in
+discourse about real computations (although they do arise in the
+analysis of algorithms).
+
+\section{Inescapable complications}
+
+The story we have told thus far is covered in many sources and
+courses.  Two complications to the story are covered less faithfully,
+although lacking them, one cannot perform cogent asymptotic
+reasoning.  Both complications involve the notion of {\em uniformity}.
+
+\noindent
+{\bf 1.}
+{\em Multiple functions}.
+%
+Say that we have four functions, $f, g, h, k$, and we know that both
+\[ f(n) = O(g(n)) \ \ \mbox{ and } \ \ h(n) = O(k(n)) \]
+It is intuitive that
+\[ f(n) + h(n) = O(g(n) + k(n)) \]
+--- but is it true?
+
+In short, the answer is YES, but verifying that requires a bit of
+subtlety, because, absent hitherto undisclosed information, the
+proportionality constants $c_{f,g}$ and $N_{f,g}$ that witness the
+big-$O$ relationship between functions $f$ and $g$ have no connection
+with the constants, $c_{h,k}, N_{h,k}$ that witness the analogous
+relationship between functions $h$ and $k$.  Therefore, in order to
+verify the posited relationship between functions $f + h$ and $g + k$,
+one much find witnessing constants $c_{f+h, g+k}$ and $N_{f+h,g+k}$.
+Of course, this task requires only elementary reasoning and
+manipulation --- but it must be done!
+
+{\bf 2.}
+{\em Multivariate functions}.
+%
+Finally, we discuss the scenario that almost automatically accompanies
+the transition from a focus on sequential, single-agent computing to a
+focus on PDC.  Within this broadened context, most functions that
+describe a system have one or more variables that describe the
+computing system --- its number of processors or of agents or the
+sizes of its memory modules or the communication-radii of its
+transponders or \ldots, in addition to the one or more variables that
+describe the data that the system is processing.  Within such
+scenarios, every assertion of an asymptotic relationship, of the form
+\[ f(\vec{m}; \vec{n}) = O(g(\vec{m}; \vec{n})) \]
+must explicitly specify the following information:
+\begin{itemize}
+\item
+which variables can grow without bound;
+\item
+among such unbounded variables, which participate in the posited
+asymptotic relation;
+\item
+for each participating unbounded variable $x$, what are the constants
+$c_x$ and $N_x$ that witness the posited asymptotic relationship(s).
+\end{itemize}
+
+Clearly the complexity of cogent asymptotic reasoning --- hence also
+the complexity of teaching about such reasoning --- gets much more
+complicated in the multivariate settings engendered by PDC.  But, the
+benefits of being able to reason qualitatively about the quantitative
+aspects of computing increase at least commensurately!
+

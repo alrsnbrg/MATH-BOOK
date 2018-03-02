@@ -1,0 +1,1085 @@
+%version of 02-26-18
+
+\chapter{SETS, BOOLEAN ALGEBRA, AND LOGIC}
+
+\section{Sets}
+\label{sec:sets}
+
+\subsection{Fundamental Set-Related Concepts}
+\label{sec:set-concepts}
+
+Sets\index{Set} are probably the most basic object of mathematical
+discourse.  Sets exist to have {\it elements},\index{Set!element} or
+{\it members},\index{Set!member} the entities that {\em belong
+  to}\index{Set!the belong-to relation} the set.  The notion of set is
+surprisingly difficult to specify formally, so we just assume that
+{\em the reader knows what a set is and recognizes that some sets are
+  finite, while others are infinite}.  Speaking informally---a formal
+treatment will follow in later chapters---here are a few illustrative
+finite sets:
+\begin{itemize}
+\item
+the set of words in this book
+
+I do not know how big this set is, but I imagine that you as a reader
+have a better idea than I as an author.
+\item
+the set of characters in any JAVA program
+
+Note that while we are sure that this set is finite, we are not so
+confident about the number of seconds the program will run!
+\item
+the set consisting of {\em you}
+
+Paraphrasing the iconic television figure Mister Rogers, ``You are
+unique.''  This set has just one element.
+
+\item
+the set of unicorns in New York City
+
+I will not argue with you about this, but I believe that this is the
+{\em empty set} $\emptyset$, which has zero members. 
+\end{itemize}
+Some familiar infinite sets are:
+\begin{itemize}
+\item
+the set of {\em nonnegative integers}
+\item
+the set of {\em positive integers}
+\item
+the set of {\em all integers}
+\item
+the set of nonnegative {\em rational numbers}---which are quotients of
+integers
+\item
+the set of nonnegative {\em real numbers}---which can be viewed
+computationally as the set of numbers that admit infinite decimal
+expansions,
+\item
+the set of nonnegative {\em complex numbers}---which can be viewed as
+ordered pairs of real numbers,
+\item
+the set of {\em all} finite-length binary strings.
+
+A {\it binary string}\index{Binary string} is a sequence of $0$s and
+$1$s.  When discussing computer-related matters, one often calls each
+$0$ and $1$ that occurs in a binary string a {\it bit}\index{Bit:
+  binary digit} (for {\it binary digit}).  The term ``bit'' leads to
+the term {\it bit string} as a synonym of {\it binary string}.
+\end{itemize}
+Despite this assumption, we begin the chapter by reviewing some basic
+concepts concerning sets and operations thereon.
+
+As noted early, sets were created to contain members/elements.  We
+denote the fact that element $t$ {\it belongs to},\index{Set!the
+  belongs to relation} or, {\it is an element of} set $T$ by the
+notation $t \in T$\index{Set!membership: $\in$}.  A {\em
+  subset}\index{Set!subset} of a set $T$ is a set $S$ each of whose
+members belongs to $T$.  The subset relation occurs in two forms, The
+{\em strong} form of the relation, denoted $S \subset
+T$,\index{Set!strong subset relation} says that every element of $S$
+is an element of $T$, but {\em not} conversely; i.e., $T$ contains
+(one or more) elements that $S$ does not.  The {\em weak} form of the
+relation, denoted $S \subseteq T$,\index{Set!weak subset relation}
+is defined as follows:
+\[
+[S \subseteq T] \ \ \mbox{ means: } \ \
+\Big[ \mbox{\em either } \ \ [S = T]
+\ \ \mbox{\em or } \ \ [S \subset T] \Big].
+\]
+
+For any finite set $S$, we denote by $|S|$ the {\em
+  cardinality}\index{Set!cardinality} of $S$, which is the number of
+elements in $S$.  Finite sets having three special cardinalities are
+singled out with special names.  The limiting case of finite sets is
+the unique {\em empty set}, which we denote by $\emptyset$; thus,
+$\emptyset$ is characterized by the equation $|\emptyset| = 0$.  (The
+empty set is often a limiting case of set-defined entities.)  If $|S|
+= 1$, then we call $S$ a {\em singleton};\index{Set!singleton set} and
+if $|S| = 2$, then we call $S$ a {\em doubleton}.\index{Set!doubleton}
+
+It is often useful to have a convenient term and notation for {\em the
+  set of all subsets of a set $S$}.  This bigger set---it contains
+$2^{|S|}$ elements when $S$ is finite---is denoted by $\p(S)$ and is
+called the {\em power set}\index{power set:set of all subsets} of
+$S$.\footnote{The name ``power set'' arises from the relative
+  cardinalities of $S$ and ${\cal P}(S)$ for finite $S$.}  Note
+carefully the two set-relations that we are talking about here:
+
+{\em A set $T$ that is a {\em subset} of set $S$ is an {\em element}
+  of the set $\p(S)$.}
+
+\noindent
+You should satisfy yourself that the biggest and smallest elements of
+${\cal P}(S)$ are, respectively, the set $S$ itself and the empty set
+$\emptyset$.
+
+\subsection{Operations on Sets}
+\label{sec:set-operations}
+
+Given two sets $S$ and $T$, we denote by:
+\begin{itemize}
+\item
+$S \cap T$\index{$S \cap T$: set intersection} the {\it
+  intersection}\index{Set!operations!intersection}
+of $S$ and $T$: the set of elements that belong to {\em both} $S$ and
+$T$.
+\[ [s \in S \cap T] \ \ \mbox{ means } \ \ 
+\Big[ [s \in S] \ \mbox{\bf and } \ [s \in T] \Big]
+\]
+
+\item
+$S \cup T$\index{$S \cup T$: set union} the {\it
+  union}\index{Set!operations!union}
+of $S$ and $T$: the set of elements that belong to $S$, or to $T$, {\em
+  or to both}.  (Because of the ``or both'' qualifier, this operation
+is sometimes called {\em inclusive
+  union}.)\index{Set!operations!inclusive union}
+\[ [s \in S \cup T] \ \ \mbox{ means } \ \
+\Big[ [s \in S] \ \mbox{\bf or } \ [s \in T]  \ \mbox{\bf or } \ [s
+    \in S \cap T] \Big]
+\]
+
+
+\item
+$S \setminus T$\index{$S \setminus T$: set difference} is the {\em
+  (set) difference}\index{Set!operations!set difference} of $S$ and
+  $T$: the set of elements that belong to $S$ but not to $T$.
+\[ [s \in S \setminus T] \ \ \mbox{ means } \ \
+\Big[ [s \in S] \ \mbox{\bf and } \ [s \not\in T] \Big]
+\]
+(Particularly in the United States, one often encounters the notation
+ ``$S-T$''\index{$S - T$: set difference} instead of ``$S \setminus
+ T$.'')
+\end{itemize}
+
+We illustrate the preceding operations with the sets $S = \{a,b,c\}$
+and $T = \{c,d\}$.  For these sets:
+\begin{eqnarray*}
+S \cap T & = &  \{c\}, \\
+S \cup T & = & \{a,b,c,d\}, \\
+S \setminus T & = & \{a,b\}.
+\end{eqnarray*}
+
+In many set-related situations, the sets of interest will be subsets
+of some fixed ``universal'' set $U$.\index{Set!universal set}
+\begin{quote}
+We use the term ``universal'' as in ``universe of discourse,'' not in
+the self-referencing sense of a set that contains all other sets as
+members, a construct (discussed by philosopher-logician Bertrand
+Russell) which leads to mind-bending paradoxes.
+\end{quote}
+Given a universal set $U$ and a {\em subset} $S \subseteq U$,
+% (the notation meaning that every element of $S$---if there are any---is
+%also an element of $U$)
+we observe the set-inequalities
+\[ \emptyset \ \subseteq \ S \ \subseteq \ U. \]
+When studying a context within which there exists a universal set $U$
+that contains all other sets of interest, we include within our
+repertoire of set-related operations also the operation of {\it
+  complementation}\index{Set!operations!complementation}
+\begin{itemize}
+\item
+$\overline{S} \ \eqdef \ U \setminus S$,\index{$\overline{S}$: the
+  complement of set $S$ relative to a universal set}
+the {\em complement} of $S$ (relative to the universal set $U$).
+
+For instance, the set of odd positive integers is the complement of
+the set of even positive integers, relative to the set of all positive
+integers.
+\end{itemize}
+We note a number of basic identities involving sets and operations on
+them.
+\begin{itemize}
+\item
+$S \setminus T \ = \ S \cap \overline{T}$,
+\item
+If $S \subseteq T$, then
+  \begin{enumerate}
+  \item
+$S \setminus T \ = \ \emptyset$,
+  \item
+$S \cap T \ = \ S$,
+  \item
+$S \cup T \ = \ T$.
+  \end{enumerate}
+\end{itemize}
+Note, in particular, that\footnote{``iff'' abbreviates the common
+mathematical phrase, ``if and only if.''}
+\[ [S = T] \ \mbox{  iff  } \ \ \Bigl[[S \subseteq T] \mbox{
+    {\small\sf and} } [T \subseteq S]\Bigr] \ \mbox{  iff  }
+\ \ \Bigl[ (S \setminus T) \cup (T \setminus S) = \emptyset\Bigr].
+\]
+
+The operations union, intersection, and complementation---and
+operations formed from them, such as set difference---are usually
+called the {\em Boolean (set)
+operations},\index{Boolean set operations}\index{Set!operations!Boolean set operations}
+(named for the $19$th-century English mathematician George Boole.
+There are several important identities involving the Boolean set
+operations.  Among the most frequently invoked are the two ``laws''
+attributed to the $19$th-century French mathematician Auguste De
+Morgan:\index{Set!operations!De Morgan's Laws}\index{De Morgan's Laws}
+\begin{equation}
+\label{e.de-morgan}
+\mbox{For all sets $S$ and $T$: } \ \left\{
+\begin{array}{lcl}
+\overline{S \cup T} & = & \overline{S} \cap \overline{T}, \\
+ \\
+\overline{S \cap T} & = & \overline{S} \cup \overline{T}.
+\end{array}
+\right.
+\end{equation}
+
+\noindent {\em (Algebraic) Closure}.\index{(Algebraic) Closure}
+%
+We end this section with a set-theoretic definition that occurs in
+many contexts.  Let $\cal C$ be any (finite or infinite) collection of
+sets, and let $S$ and $T$ be two elements of $\cal C$.  (Note that
+$\cal C$ is a set whose elements are sets.)  Think, e.g., of the
+concrete example of set intersection.
+
+We say that $\cal C$ is {\em closed} under intersection if whenever
+sets $S$ and $T$ (which could be the same set) both belong to $\cal
+C$, the set $S \cap T$ also belongs to $\c$.  By De Morgan's laws,
+$\cal C$'s closure under union implies also its closure under
+intersection.
+
+\section{Binary Relations}
+\label{s.relation}
+
+\subsection{The Formal Notion of Binary Relation}
+\label{s.relation-basic}
+
+We begin our discussion of relations by adding a new (binary) set
+operation to our earlier repertoire.  Given (finite or infinite) sets
+$S$ and $T$ we denote by $S \times T$\index{$S \times T$} the {\it
+  direct product} of $S$ and $T$,\index{direct product of sets} which
+is the set of all {\it ordered pairs}\index{ordered pair of set
+  elements} whose first coordinate contains an element of $S$ and
+whose second coordinate contains an element of $T$.  For example, if
+$S = \{a,b,c\}$ and $T = \{c,d\}$, then
+\[ S \times T \ =  \{
+\langle a,c \rangle,
+\langle b,c \rangle,
+\langle c,c \rangle,
+\langle a,d \rangle,
+\langle b,d \rangle,
+\langle c,d \rangle\}
+\]
+The direct-product operation on sets affords us a simple, yet
+powerful, formal notion of binary relation.
+
+Given (finite or infinite) sets $S$ and $T$, a {\it relation $\rho$ on
+  $S$ and $T$}\index{relation on sets} (in that order) is any subset
+\[ \rho \ \subseteq \ S \times T. \]
+When $S = T$, we often call $\rho$ a {\em binary relation on (the set)
+  $S$}\index{binary relation on a set} (``{\em binary}'' because there
+are {\em two} copies of set $S$ being related by $\rho$).
+
+Relations are so common that we use them in every aspect of our lives
+without even noticing them.  The relations ``equal to,'' ``less than,''
+and ``greater than or equal to'' are simple examples of binary
+relations on the integers.  These same three relations apply also to
+other familiar number systems such as the rational and real numbers;
+only ``equal,'' though, holds (in the natural way) for the complex
+numbers.  Some subset of the three relations ``is a parent of,'' ``is
+a child of,'' and ``is a sibling of'' probably are binary relations on
+(the set of people constituting) your family.  To mention just one
+relation with distinct sets $S$ and $T$, the relation ``$A$ is taking
+course $X$'' is a relation on
+\[ \left( \mbox{the set of all students} \right) \times
+   \left( \mbox{the set of all courses} \right).
+\]
+
+\ignore{************
+We shall see later (Section~\ref{s.pairing}) that there is a formal
+sense in which binary relations are all we ever need consider: $3$-set
+({\em ternary}) 
+relations\index{ternary relation}\index{relation!ternary}---which are
+subsets of $S_1 \times S_2 \times S_3$---and $4$-set ({\em
+  quaternary}) 
+relations\index{quaternary relation}\index{relation!quaternary}---which
+are subsets of $S_1 \times S_2 \times S_3 \times S_4$---and so on (for
+any finite ``arity''), can all be expressed as binary relations of
+binary relations \ldots of binary relations.  As examples: For ternary
+relations, we can replace any subset $R$ of $S_1 \times S_2 \times
+S_3$ by the obvious corresponding subset $R'$ of $S_1 \times (S_2
+\times S_3)$: for each element $\langle s_1, s_2, s_3 \rangle$ of $R$,
+the corresponding element of $R'$ is $\langle s_1, \langle s_2, s_3
+\rangle \rangle$.  Similarly, for quaternary relations, we can replace
+any subset $R''$ of $S_1 \times S_2 \times S_3 \times S_4$ by the
+obvious corresponding subset $R'''$ of $S_1 \times (S_2 \times (S_3
+\times S_4))$: for each element $\langle s_1, s_2, s_3, s_4 \rangle$
+of $R''$, the corresponding element of $R'''$ is $\langle s_1, \langle
+s_2, \langle s_3, s_4 \rangle \rangle \rangle$.
+\begin{quote}
+You should convince yourself that we could achieve the desired
+correspondence also by replacing $S_1 \times (S_2 \times S_3)$ with
+$(S_1 \times S_2) \times S_3$ and by replacing $S_1 \times S_2 \times
+S_3 \times S_4$ by either $((S_1 \times S_2) \times S_3) \times S_4$
+or $(S_1 \times S_2) \times (S_3 \times S_4)$.
+\end{quote}
+************}
+
+By convention, when dealing with a binary relation $\rho \ \subseteq
+\ S \times T$, we often write ``$s \rho t$''\index{infix notation for
+  a binary relation: $s \rho t$} in place of the more stilted notation
+``$\langle s, t \rangle \in \rho$.''  For instance we (almost always)
+write ``$5 < 7$'' in place of the strange-looking (but formally
+correct) ``$\langle 5,7 \rangle \in \ <$.''
+
+The following operation on relations occurs in many guises, in almost
+all mathematical theories.  Let $\rho$ and $\rho'$ be binary relations
+on a set $S$.  The {\it composition}\index{composition of binary
+  relations} of $\rho$ and $\rho'$ (in that order) is the relation
+\[ 
+\rho'' \ \eqdef \ \Bigl\{ \langle s, t \rangle \in S \times S \ | \
+(\exists t \in S) \Bigl[ [s \rho t] \mbox{ and } [t \rho' u] \Bigr] \Bigr\}.
+\]
+(Note that we have used both of our notational conventions for
+relations here.  Note also our use of a common ``shorthand'' compound
+symbol ``$\eqdef$'':\index{$\eqdef$: ``equals, by definition''} The
+sentence ``$X \eqdef Y$'' should be read $X$ {\em is (or, equals), by
+  definition}, $Y$.'')
+
+\noindent
+It is important to be able to assert that elements $s, t \in S$ are
+{\em not} $\rho$-related,\index{relation negation} i.e., $\langle s, t
+\rangle \not\in S \times S$.  Several notations have been developed
+for this purpose.\index{$\widetilde{\rho}$: the negation of relation $\rho$}
+\begin{equation}
+\label{eq:NOT-rho-notation}
+\begin{array}{|c|c|c|c|}
+\hline
+\mbox{\bf Relation} & \mbox{\bf Notation} & \mbox{\bf Negation} &
+\mbox{\bf Standard?} \\
+\hline
+\hline
+\mbox{set membership} & \in & \not\in & \mbox{yes} \\
+\hline
+\mbox{equality}       & =   & \neq    & \mbox{yes} \\
+\hline
+\mbox{less than (strong)} & < & \not < \mbox{ or } \geq & \mbox{yes} \\
+\hline
+\mbox{less than (weak)} & \leq & \not\leq \mbox{ or } > & \mbox{yes} \\
+\hline
+\mbox{greater than (strong)} & > & \not > \mbox{ or } \leq & \mbox{yes} \\
+\hline
+\mbox{greater than (weak)} & \geq & \not\geq \mbox{ or } < & \mbox{yes} \\
+\hline
+\mbox{generic}  & \rho  & \sim\rho \mbox{ or } \widetilde{\rho} &
+\mbox{no} \\
+\hline
+\end{array}
+\end{equation}
+
+There are several special classes of binary relations that are so
+important that we must single them out immediately, in the following
+subsections.
+
+
+\subsection{Order Relations}
+\label{sec:order-relation}
+
+A binary relation $\rho$ on a set $S$ is a {\it partial order
+  relation},\index{order relation}\index{order relation!
+  partial}\index{partial order}\index{order} or, more briefly, is a
+{\it partial order} if $\rho$ is transitive.\index{transitive
+  relation} This means that, for all elements $s, t, u \in S$,
+\begin{equation}
+\label{eq:def-transitive}
+\mbox{if } \ \ sRt \ \ \ \mbox{ and } \ \ tRu \ \ \ \mbox{ then }
+\  \ sRu.
+\end{equation}
+The qualifier ``partial'' warns us that some pairs of elements of $S$
+do not occur in relation $\rho$.  Number-related orders supply an easy
+illustrative example.  Given any two distinct integers, $m$ and $n$,
+one of them must be less than the other: either $m < n$, or $n < m$.
+In contrast, if we consider {\it ordered pairs} of integers, then
+there are pairs of pairs that are not related by the ``less than''
+relation in any natural way.  For instance, even though we may agree
+that, by a natural extension of the number-ordering relation ``less
+than'', $\langle 4, 17 \rangle$ is ``less than'' $\langle 22, 19
+\rangle$, we might well not agree on which of $\langle 4, 22 \rangle$
+and $\langle 19, 17 \rangle$ is less than the other---or, indeed,
+whether either is ``less than'' the other.
+
+In many domains, order relations occur in two ``flavors'', {\em
+  strong} and {\em weak}.\index{order!strong}\index{order!weak} For
+many such relations $\rho$---consider, e.g., ``less than'' on the
+integers---the weak version is denoted by underscoring the strong
+one's symbol.  This will be our convention.  Just as $\leq$ denotes
+the weak version of $<$, and $\geq$ denotes the weak version of $>$,
+we shall denote the weak version of a generic order $\rho$ by
+$\underline{\rho}$.\index{$\underline{\rho}$:the weak version of order
+  relation $\rho$}.  Strong and weak versions of an order relation
+$\rho$ (denoted, respectively, are distinguished by their behavior
+under simultaneous membership.  For illustration, instantiate the
+following template with $\rho$ being ``$<$'' and with $\rho$ being
+``$>$'':
+
+\smallskip
+
+\begin{tabular}{lll}
+For a strong order $\rho$: & &
+{\bf if} $[s \ \rho \ t]$, {\bf then} $[t \ \widetilde{\rho} \ s]$ \\
+For the weak version $\underline{\rho}$ of $\rho$: & &
+{\bf if} $[s \ \underline{\rho} \ t]$ {\bf and} $[t \ \underline{\rho}
+  \ s]$, {\bf then} $[s = t]$.
+\end{tabular}
+
+\subsection{Equivalence Relations}
+\label{s.equiv-rel}
+
+A binary relation $R$ on a set $S$ is an {\it equivalence
+  relation}\index{equivalence relation} if it enjoys the following
+three properties:
+\begin{enumerate}
+\item
+$R$ is {\em reflexive:} for all $s \in S$, we have $sRs$.
+\item
+$R$ is {\em symmetric:} for all $s, s' \in S$, we have $sRs'$ whenever
+  $s'Rs$.
+\item
+$R$ is {\em transitive:} for all $s, s', s'' \in S$, whenever we have
+  $sRs'$ and $s'Rs''$, we also have $sRs''$.
+\end{enumerate}
+Sample familiar  equivalence relations are:
+\begin{itemize}
+\item
+The equality relation, $=$, on a set $S$ which relates each $s \in S$
+with itself but with no other element of $S$.
+\item
+The relations $\equiv_{12}$ and $\equiv_{24}$ on integers,
+where\footnote{As usual, $|x|$ is the {\em absolute value}, or, {\em
+    magnitude} of the number $x$.  That is, if $x \geq 0$, then $|x| =
+  x$; if $x < 0$, then $|x| = -x$.}
+  \begin{enumerate}
+  \item
+$n_1 \equiv_{12} n_2$ if and only if $|n_1 - n_2|$ is divisible by
+$12$.
+  \item
+$n_1 \equiv_{24} n_2$ if and only if $|n_1 - n_2|$ is divisible by
+$24$.
+  \end{enumerate}
+We use relation $\equiv_{12}$ (without formally knowing it) whenever
+we tell time using a $12$-hour clock and relation $\equiv_{24}$
+whenever we tell time using a $24$-hour clock.
+\end{itemize}
+
+Closely related to the notion of an equivalence relation on a set $S$
+is the notion of a {\it partition} of $S$.  A partition of $S$ is a
+nonempty collection of subsets $S_1, S_2, \ldots$ of $S$ that are
+\begin{enumerate}
+\item
+{\em mutually exclusive:}
+for distinct indices $i$ and $j$, $S_i \cap S_j = \emptyset$;
+\item
+{\em collectively exhaustive:}
+$S_1 \cup S_2 \cup \cdots = S$.
+\end{enumerate}
+We call each set $S_i$ a {\it block} of the partition.
+
+One verifies the following Proposition easily.\index{partitions and
+  equivalence relations} 
+
+\begin{prop}
+A partition of a set $S$ and an equivalence relation on $S$ are just
+two ways of looking at the same concept.
+\end{prop}
+
+To verify this, we note the following.
+
+\noindent {\small\sf Getting an equivalence relation from a partition}.
+%
+Given any partition $S_1, S_2, \ldots$ of a set $S$, define the
+following relation $R$ on $S$:
+
+\noindent
+$sRs'$ if and only if $s$ and $s'$ belong to the same block of the
+partition.
+
+\noindent
+{\em Relation $R$ is an equivalence relation on $S$.}
+To wit, $R$ is reflexive, symmetric, and transitive because collective
+exhaustiveness ensures that each $s \in S$ belongs to some block of
+the partition, while mutual exclusivity ensures that it belongs to
+only one block.
+
+\noindent {\small\sf Getting a partition from an equivalence relation}.
+%
+To obtain the converse, focus on any equivalence relation $R$ on a set
+$S$.  For each $s \in S$, denote by $[s]_R$ the set
+\[ [s]_R \ \eqdef \ \{ s' \in S \ | \ sRs' \}; \]
+we call $[s]_R$ {\it the equivalence class of $s$ under relation
+$R$}.\index{equivalence class}\index{equivalence relation!class}
+
+\noindent
+{\em The equivalence classes under $R$ form a partition of $S$}.
+To wit: $R$'s reflexivity ensures that the equivalence classes
+collectively exhaust $S$; $R$'s symmetry and transitivity ensure that
+equivalence classes are mutually disjoint.
+
+The {\it index}\index{index (of an equivalence relation)} of the
+equivalence relation $R$ is its number of classes---which can be
+finite or infinite.
+
+Let\footnote{Conforming to common usage, we typically use the symbol
+  $\equiv$, possibly embellished by a subscript or superscript, to
+  denote an equivalence relation.}~$\equiv_1$ and $\equiv_2$ be two
+equivalence relations on a set $S$.  We say that the relation
+$\equiv_1$ {\em is a refinement of} (or, {\em
+  refines})\index{refinement of an equivalence relation} the relation
+$\equiv_2$ just when each block of $\equiv_1$ is a subset of some
+block of $\equiv_2$.  We leave to the reader the simple verification
+of the following basic result.
+
+\begin{theorem}
+\label{thm:equality=finest-equiv}
+The equality relation, $=$, on a set $S$ refines every equivalence relation
+on $S$.  In this sense, it is the finest equivalence relation on $S$.
+\end{theorem}
+
+\subsection{Functions}
+\label{s.function}
+
+One learns early in school that a function from a set $A$ to a set $B$
+is a rule that assigns a unique value from $B$ to every value from
+$A$.  Simple examples illustrate that this notion of function is more
+restrictive than necessary.  Think, e.g., of the operation {\em
+  division} on integers.  We learn that division, like multiplication,
+is a function that assigns a number to a given pair of numbers.  Yet
+we are warned almost immediately not to ``divide by $0$'': The
+quotient upon division by $0$ is ``undefined.''  So, division is not
+quite a function as envisioned our initial definition of the notion.
+Indeed, in contrast to an expression such as ``$4 \div 2$,'' which
+should lead to the result $2$ in any programming
+environment,\footnote{We are, of course, ignoring demons such as
+  round-off error.}~expressions such as ``$4 \div 0$'' will lead to
+wildly different results in different programming environments.  Since
+``wildly different'' is anathema in any mathematical setting, we deal
+with situations such as just described by broadening the definition of
+``function'' in a way that behaves like our initial simple definition
+under ``well-behaved'' circumstances and that extends the notion in an
+intellectually consistent way under ``ill-behaved'' circumstances.
+Let us begin to get formal.
+
+A {\it (partial) function from set $S$ to set $T$} is a relation $F
+\subseteq S \times T$ that is {\it single-valued;} i.e., for each $s
+\in S$, there is {\em at most} one $t \in T$ such that $sFt$.  We
+traditionally write ``$F: S \rightarrow T$'' as shorthand for the
+assertion, ``$F$ is a function from the set $S$ to the set $T$''; we
+also traditionally write ``$F(s) = t$'' for the more conservative
+``$sFt$.''  (The single-valuedness of $F$ makes the nonconservative
+notation safe.)  We often call the set $S$ the {\em source (set)} and
+$T$ the {\em target (set)} for function $F$.  When there is always a
+(perforce, unique) $t \in T$ for each $s \in S$, then we call $F$ a
+{\em total} function.
+\ignore{*******
+Note that our terminology is a bit unexpected: {\em Every total
+  function is a partial function;} that is,
+``partial''\index{function!partial} is the generic term, and ``total''
+is a special case.
+*********}
+
+You may be surprisedf to encounter functions that are not total,
+because most of the functions you deal with daily are {\em total}.
+Our mathematical ancestors had to do some fancy footwork in order to
+make your world so neat.  Their choreography took two complementary
+forms.
+\begin{enumerate}
+\item
+They expanded the target set $T$ on numerous occasions.  As just two
+instances:
+  \begin{itemize}
+  \item
+They appended both $0$ and the negative integers to the preexisting
+positive integers\footnote{The great mathematician Leopold Kronecker
+  said, ``God made the integers, all else is the work of man'';
+  Kronecker was referring, of course, to the {\em positive}
+  integers.}~in order to make subtraction a total function.
+
+  \item
+They appended the rationals to the preexisting integers in order to
+make division (by nonzero numbers!)~a total function.
+  \end{itemize}
+The irrational algebraic numbers, the nonalgebraic real numbers, and
+the nonreal complex numbers were similarly appended, in turn, to our
+number system in order to make certain (more complicated) functions
+total.
+
+\item
+They adapted the function.  In programming languages, in particular,
+true undefinedness is anathema, so such languages typically have ways
+of making functions total, via devices such as ``integer division''
+(so that odd integers can be ``divided by $2$'') as well as various
+ploys for accommodating ``division by $0$.''
+\end{enumerate}
+The ($20$th-century) inventors of {\em Computation Theory} insisted on
+a theory of functions on nonnegative integers (or some transparent
+encoding thereof).  The price for such ``pureness'' is that we must
+allow functions to be undefined on some arguments.  Thus the theory
+renders such functions as ``division by $2$'' and ``taking square
+roots'' as being {\em nontotal}: both are defined only on subsets of
+the positive integers (the even integers and the perfect squares,
+respectively).
+
+Three special classes of functions merit explicit mention.  For each,
+we give both a down-to-earth name and a more scholarly Latinate one.
+
+A function $F: S \rightarrow T$ is:
+\begin{enumerate}
+\item
+{\it one-to-one} (or {\it injective}) if for each $t \in T$, there is
+at most one $s \in S$ such that $F(s) = t$;
+
+%{\em Example:} ``multiplication by $2$'' is injective; ``integer
+%division by $2$'' is not (because, e.g., $3$ and $2$ yield the same
+%answer).
+
+An injective function $F$ is called an {\it injection}.
+
+\item
+{\it onto} (or {\it surjective}) if for each $t \in T$, there is at
+least one $s \in S$ such that $F(s) = t$;
+
+%{\em Example:} ``subtraction of $1$'' is surjective, as is ``taking
+%the square root''; ``addition of $1$'' is not (because, e.g., $0$ is
+%never the sum), and ``squaring'' is not (because, e.g., $2$ is not the
+%square of any integer).
+
+A surjective function $F$ is called a {\it surjection}.
+
+\item
+{\it one-to-one, onto} (or {\it bijective}) if for each $t \in T$,
+there is precisely one $s \in S$ such that $F(s) = t$.
+
+\ignore{**********
+{\em Example:} The (total) function $F: \{0,1\}^\star \rightarrow
+\{0,1\}^\star$ defined by:
+\[
+(\forall w \in \{0,1\}^\star) \ F(w) \ = \
+\mbox{(the reversal of $w$)}
+\]
+is a bijection.  The (total) function $F': \{0,1\}^\star \rightarrow
+\N$ defined by
+\[
+(\forall w \in \{0,1\}^\star) \ F(w) \ = \
+\mbox{(the integer that is represented by $w$ viewed as a numeral)}
+\]
+is {\em not} a bijection, due to the possibility of leading $0$'s.
+\begin{quote}
+A {\it numeral}\index{representation of integers!numeral}
+is a sequence of digits that is the ``name'' of a number.  The
+numerical value of a numeral $x$ depends on the {\it number 
+base},\index{representation of integers!number base}
+which is a positive integer $b >1$ that is used to create $x$.  Much
+of our focus will be on {\em binary} numerals---which are binary
+strings---for which the base is 
+$b=2$.\index{representation of integers!base-$2$ representation}\index{representation of integers!binary representation}
+For a general number base $b$, the integer denoted by the numeral
+$\beta_n \beta_{n-1} \ldots \beta_1 \beta_0$, where each $\beta_i \in
+\{0,1, \ldots, b-1\}$, is\index{representation of integers!base-$b$ representation}
+\[ \sum_{i=0}^n \ \beta_i b^i. \]
+We say that bit $\beta_i$ has {\em lower order}\index{representation of integers!low-order bit}
+in the numeral than does $\beta_{i+1}$, because $\beta_i$ is
+multiplied by $b^i$ in evaluating the numeral, whereas $\beta_{i+1}$
+is multiplied by $b^{i+1}$.
+\end{quote}
+*********}
+
+A bijective function $F$ is called a {\it bijection}.
+\end{enumerate}
+
+\section{Boolean Algebras}\index{Boolean Algebra}
+
+A {\it Boolean algebra} is a mathematical system **HERE
+
+
+\subsection{The Elements of Boolean Algebra}
+
+\subsubsection{The Boolean Connectives}\index{Boolean Algebra!Boolean connectives}
+
+\subsubsection{The Axioms of the System}\index{Boolean Algebra!axioms}
+
+\subsection{Two Special Boolean Algebras}
+
+\subsubsection{The Algebra of Sets}\index{the algebra of sets}
+
+\subsubsection{Propositional Logic as an Algebra: The Propositional
+  Calculus}\index{Propositional logic}\index{The Propositional                   
+  Calculus}
+
+{\it Propositional Logic} **HERE
+
+
+\addcontentsline{toc}{paragraph}{A. The Fundamental Logical Connectives}
+\noindent {\small\sf A.  The Fundamental Logical
+  Connectives}\index{Propositional logic!fundamental connectives}
+
+
+
+
+The Boolean set-related operations we discussed in
+Section~\ref{sec:set-operations} have important
+analogues within the context of Propositional logic.
+ {\em logical} analogues of these operations for logical
+sentences and their logical {\em truth values},\index{(logical) truth
+  values}
+%
+{\sc true} and {\sc false}, often denoted $1$ and $0$, respectively:
+\begin{itemize}
+\item
+The logical analogue of complementation is (logical) {\small\sf
+  not},\index{logic operators!{\small\sf not} ($\sim$)}
+which we denote by ``$\sim$'', as in
+\[
+[\sim \mbox{\sc true} = \mbox{\sc false}] \ \ \mbox{ and } \ \ [\sim
+  \mbox{\sc false} = \mbox{\sc true}].
+\]
+\item
+The logical analogue of union is (logical) {\small\sf or},
+\index{logic operators!{\small\sf or} ($\vee$)}
+\index{logic operators!disjunction ($\vee$)}
+\index{logic operators!logical sum ($\vee$)}
+%
+which is also called {\em disjunction} or {\em logical sum}.  Texts
+often denote ``{\small\sf or}'' in expressions by ``$\vee$'':
+\[
+[X \ \vee \ Y =  \mbox{\sc true}] \ \ \mbox{ if, and only if, } \ \ 
+[X= \mbox{\sc true}] \mbox{ or }
+[Y= \mbox{\sc true}] \mbox{ or both}.
+\]
+\item
+The logical analogue of intersection is (logical) {\small\sf and},
+\index{logic operators!{\small\sf and} ($\wedge$)}
+\index{logic operators!conjunction ($\wedge$)}
+\index{logic operators!logical product ($\wedge$)}
+%
+which is also called {\em conjunction} or {\em logical product}.
+Texts often denote ``{\small\sf and}'' in expressions by ``$\wedge$":
+\[ [X \ \wedge \ Y = \mbox{\sc true}]  \ \ \mbox{ if, and only if,
+  both } \ \ 
+ [X= \mbox{\sc true}] \mbox{ and } [Y= \mbox{\sc true}]
+\]
+\end{itemize}
+
+
+
+
+
+\addcontentsline{toc}{paragraph}{A. The logical connectives algebraically}
+\noindent {\small\sf A. The logical connectives algebraically}
+
+Introduce connectives algebraically
+
+
+\addcontentsline{toc}{paragraph}{B. The logical connectives
+  algebraically}
+\noindent {\small\sf B. The logical connectives via truth tables}
+
+
+\begin{equation}
+\begin{array}{|c||c|}
+\hline
+P & \sim P \\
+\hline
+\hline
+0 & 1 \\
+\hline
+1 & 0 \\
+\hline
+\end{array}
+\hspace*{.5in}
+\begin{array}{|c|c||c||c||c||c|}
+\hline
+P & Q & P \vee Q & P \wedge Q & P \Rightarrow Q & P \equiv Q  \\
+\hline
+\hline
+0 & 0 & 0 & 0 & 1 & 1 \\
+\hline
+0 & 1 & 1 & 0 & 1 & 0 \\
+\hline
+1 & 0 & 1 & 0 & 0 & 0 \\
+\hline
+1 & 1 & 1 & 1 & 1 & 1 \\
+\hline
+\end{array}
+\end{equation}
+
+
+\addcontentsline{toc}{paragraph}{C. Logic as an algebra}
+\noindent {\small\sf C. Logic as an algebra}\index{Propositional
+  logic!logic as an algebra}
+
+
+
+
+
+
+\addcontentsline{toc}{paragraph}{D. Logic via truth values}
+\noindent {\small\sf D. Logic via truth values}\index{Propositional logic!logic via truth values}
+
+
+Propositional logic is a very special genre of Boolean algebra, namely,
+a {\em free} Boolean Algebra.\index{Boolean algebra!{\em free} algebra}
+%
+The meaning of the qualifier {\it free} is manifest in the following 
+{\em meta-theorem} (cite Rosser's book)
+
+\begin{theorem}
+\label{thm:Prop-calc-isfree}
+A propositional expression $E(P, Q, \ldots, R)$ is a theorem of
+Propositional logic if, and only if, it to {\sc true} under all truth
+assignments to the propositions $P, Q, \ldots, R$.
+\end{theorem}
+
+Proving Theorem~\ref{thm:Prop-calc-isfree} is beyond the scope of this
+book.  But we present a few illustrative instantiations.
+
+\bigskip
+
+\noindent
+\underline{\it The law of double negation}:\index{Propositional
+  logic!Truth tables!the law of double negation}\index{Truth
+  tables!the law of double negation}
+$P \ \ \equiv \ \ \sim [\sim P]$
+\begin{equation}
+\label{eq:double-neg}
+\begin{array}{|c|c||c|}
+\hline
+P & \sim P & \sim[\sim P] \\
+\hline
+\hline
+0 & 1 & 0 \\
+\hline
+1 & 0 & 1 \\
+\hline
+\end{array}
+\end{equation}
+
+Note that columns 1 and 3 of truth table (\ref{eq:double-neg}) are
+identical.  By Theorem~\ref{thm:Prop-calc-isfree}, this fact verifies
+the law of double negation.  We thereby have a mathematical analogue
+of the old saw, ``A double negative is a positive.''
+
+\bigskip
+
+\noindent 
+\underline{\it The law of contraposition}:\index{Propositional
+  logic!Truth tables!the law of contraposition}\index{Truth
+  tables!the law of contraposition}
+$\left[ [ P \Rightarrow Q ] \ \ \equiv \ \ [ \sim Q
+    \Rightarrow \sim P ] \right]$
+\begin{equation}
+\label{eq:contraposition}
+\begin{array}{|c|c|c|c||c||c|}
+\hline
+P & \sim P & Q & \sim Q & \underline{P \Rightarrow Q}
+ & \underline{\sim Q \Rightarrow \sim P} \\
+\hline
+\hline
+0 & 1 & 0 & 1 & 1 & 1 \\
+\hline
+0 & 1 & 1 & 0 & 1 & 1 \\
+\hline
+1 & 0 & 0 & 1 & 0 & 0 \\
+\hline
+1 & 0 & 1 & 0 & 1 & 1 \\
+\hline
+\end{array}
+\end{equation}
+
+Note that columns 5 and 6 of truth table (\ref{eq:contraposition}) are
+identical.  By Theorem~\ref{thm:Prop-calc-isfree}, this fact verifies
+the law of contraposition.
+
+\bigskip
+
+\noindent 
+\underline{\it De Morgan's Laws}:\index{Propositional logic!Truth
+  tables!verify De Morgan's Laws}\index{Truth tables!verify De Morgan's Laws}
+\begin{itemize}
+\item
+$[ P \wedge Q ] \ \ \equiv \ \ \sim [ [\sim P] \vee [\sim Q]]$
+\item
+$[ P \vee Q ] \ \ \equiv \ \ \sim [ [\sim P] \wedge [\sim Q]]$
+\end{itemize}
+\begin{equation}
+\label{eq:DeMorgan}
+\begin{array}{|c|c|c|c||c|c|||c|c|}
+\hline
+P & \sim P & Q & \sim Q 
+  & [ P \wedge Q ]
+  & [\sim P] \vee [\sim Q]
+  & [ P \vee Q ]
+  & [\sim P] \wedge [\sim Q] \\
+\hline
+\hline
+0 & 1 & 0 & 1
+  & 0
+  & 1
+  & 0
+  & 1 \\
+\hline
+0 & 1 & 1 & 0
+  & 0
+  & 1
+  & 1
+  & 1 \\
+\hline
+1 & 0 & 0 & 1
+  & 0
+  & 1
+  & 1
+  & 1 \\
+\hline
+1 & 0 & 1 & 0
+  & 1
+  & 0
+  & 1
+  & 0 \\
+\hline
+\end{array}
+\end{equation}
+
+Note that columns 5 and 6 of truth table (\ref{eq:DeMorgan}) are
+mutually complementary, as are columns 7 and 8.  If we negate (or,
+complement) the entries of columns 6 and 8, then we can invoke
+Theorem~\ref{thm:Prop-calc-isfree} to verify De Morgan's laws for
+Propositional logic.
+
+\noindent 
+\underline{\it The distributive laws for Propositional
+  logic}\index{Propositional logic!Truth tables!the distributive
+  laws}\index{Truth tables!the distributive laws for Propositional logic}
+
+\noindent
+In numerical arithmetic, multiplication distributes over addition, but
+not conversely, so we have a single distributive law for arithmetic
+(see Section~\ref{sec:Arithmetic-Laws}).  In contrast, each of logical
+multiplication and logical addition distributes over the other, so we
+have two distributive laws for Propositional logic.
+\begin{itemize}
+\item
+$ P \vee [ Q \wedge R] \ \ \equiv \ \ [P \vee Q] \wedge R$
+\item
+$P \wedge [ Q \vee R] \ \ \equiv \ \ [P \wedge Q] \vee R$
+\end{itemize}
+{\small
+\begin{equation}
+\label{eq:distrib-law}
+\begin{array}{|c|c|c||c|c|c|c|||c|c||c|c|}
+\hline
+P & Q & R
+  & [P \vee Q]
+  & [P \wedge Q]
+  & [Q \wedge R] 
+  & [Q \vee R] 
+  & P \vee [ Q \wedge R]
+  & [P \vee Q] \wedge [P \vee R]
+  & P \wedge [ Q \vee R]
+  & [P \wedge Q] \vee [P \wedge R] \\
+\hline
+\hline
+0 & 0 & 0
+  & 0
+  & 0
+  & 0
+  & 0
+  & 0
+  & 0
+  & 0
+  & 0 \\ 
+\hline
+0 & 0 & 1
+  & 0
+  & 0
+  & 0
+  & 1
+  & 0
+  & 0
+  & 0 
+  & 0 \\
+\hline
+0 & 1 & 0
+  & 1
+  & 0
+  & 0
+  & 1
+  & 0
+  & 0
+  & 0
+  & 0 \\
+\hline
+0 & 1 & 1
+  & 1
+  & 0
+  & 1
+  & 1
+  & 1
+  & 1
+  & 0
+  & 0 \\
+\hline
+1 & 0 & 0
+  & 1
+  & 0
+  & 0
+  & 0
+  & 1
+  & 1
+  & 0
+  & 0 \\
+\hline
+1 & 0 & 1
+  & 1
+  & 0
+  & 1
+  & 0
+  & 1
+  & 1
+  & 1
+  & 1 \\
+\hline
+1 & 1 & 0
+  & 1
+  & 1
+  & 0
+  & 1
+  & 1
+  & 1
+  & 1
+  & 1 \\
+\hline
+1 & 1 & 1
+  & 1
+  & 1
+  & 1
+  & 1
+  & 1
+  & 1
+  & 1
+  & 1 \\
+\hline
+\end{array}
+\end{equation}
+}
+
+Note that columns 8 and 9 of truth table (\ref{eq:distrib-law}) are
+identical, as are columns 10 and 11.  By
+Theorem~\ref{thm:Prop-calc-isfree} this fact verifies the distributive
+laws for Propositional logic.
+
+
+\subsection{Connecting Mathematical Logic with Logical
+  Reasoning}\index{Propositonal logic!connection with logical reasoning}
+\label{sec:practical-logic}
+
+
+Converse
+
+Contrapositive
+
+Proof by contradiction\index{proof by contradiction}

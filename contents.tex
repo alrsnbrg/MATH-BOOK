@@ -1,0 +1,370 @@
+%version of 01-29-18
+
+\documentclass{article}
+
+\input preamble
+
+\begin{document}
+
+\title{Mathematics for Studying Computing}
+
+\author{Arnold L.~Rosenberg}
+
+
+\maketitle
+
+%\begin{abstract}
+%TBD
+%\end{abstract}
+
+%Tom Cormen:
+%sets and basic logic.  For example, in basic logic: what is an
+%implication; what are the converse, inverse, and contrapositive of an
+%implication, and how do they relate true/false-wise to the
+%implication.  Also, boolean functions and, or, xor.  Basic proof
+%techniques: induction, construction, contradiction.
+
+
+%Denis Trystram:
+%section 1 (basics) may be extended to more diverse techniques of
+%counting
+%in particular those which use adequate sets and bijections among these
+%sets and the problem to solve
+%(we can consider here the pigeon holes proofs). Same for binomial
+%coefficients and their calculations.
+%May be some topics linked with coding would be welcome (in the section
+%about strings). 
+%Do you consider that modulo arithmetic is not useful in this
+%curriculum?
+%If you wish, I have some proposal on probability and its link with
+%paths problems and counting.
+
+
+\section{Introduction}
+\label{s.background-math}
+
+
+
+\section{Sets and Logic}
+\label{s.sets}
+
+
+
+\ignore{*************8
+\section{Formal Languages}
+\label{s.language}
+
+\subsection{The Notion of Language in Computation Theory}
+\label{s.language-basic}
+
+Let $\Sigma$ be a finite set of (atomic) symbols.  Reflecting the
+linguistic antecedents of computation theory (one of the theory's many
+ancestors), we often call the set $\Sigma$ an {\bf alphabet}\index{alphabet}
+and its constituent symbols {\bf letters}.\index{letter}
+For each nonnegative integer $k$, we denote by $\Sigma^k$\index{$\Sigma^k$: all length-$k$ strings}
+the set of all length-$k$ strings\index{string}---or sequences---of
+elements of $\Sigma$.  For instance, if $\Sigma = \{ a, b \}$, then:
+\begin{eqnarray*}
+\Sigma^0 & = & \{ \varepsilon \} \ \ \mbox{($\varepsilon$ is the {\it
+    null 
+string:}\index{null string ($\varepsilon$)}\index{$\varepsilon$: the null string}
+the unique string of length $0$)}, \\
+\Sigma^1 & = & \Sigma = \{ a, b \}, \\
+\Sigma^2 & = & \{ aa, ab, ba, bb \}, \\
+\Sigma^3 & = & \{ aaa, aab, aba, abb, baa, bab, bba, bbb \}.
+\end{eqnarray*}
+We denote by $\Sigma^\star$\index{$\Sigma^\star$: all finite-length strings over $\Sigma$}
+{\em the set of all finite-length strings of elements of} $\Sigma$;
+symbolically,
+\[ \Sigma^\star \ = \ \bigcup_{k \in \mathbb{N}} \Sigma^k. \]
+Again nodding to the theory's linguistic antecedents, we often call
+elements of $\Sigma^\star$ {\em words},\index{word}
+although we also often call them {\em strings}.
+\begin{quote}
+{\bf Notes}.
+($a$)
+If $\Sigma \neq \emptyset$, then $\Sigma^\star$ is infinite.
+
+($b$)
+Because $\Sigma^0 \subseteq \Sigma^\star$, $\Sigma^\star$ is never
+empty.  Indeed, $\Sigma^\star$ is finite iff $\Sigma = \emptyset$, in
+which case $\Sigma^\star$ contains the single word $\varepsilon$.
+
+($c$)
+Be careful when reasoning about the null string $\varepsilon$ (just as
+you should be careful when reasoning about the null list as a data
+structure).  Specifically, despite $\varepsilon$'s lack of letters, it
+{\em is} an object, so, for instance, the set $\{ \varepsilon \}$ is
+{\em not} empty.
+
+($d$)
+The alphabet $\Sigma = \{\sigma_1, \sigma_2, \ldots, \sigma_n\}$ is a
+{\em set}; hence, it has no {\em intrinsic} order.  However, in many
+situations, $\Sigma$ is endowed with an {\em extrinsic} order.  For
+instance, if $\Sigma$ is the Latin alphabet, then we all ``know'' that
+``a'' precedes ``b,'' which precedes ``c,'' and so on.  Similarly, if
+$\Sigma = \{0,1\}$, then we all ``know'' that ``$0$'' precedes ``$1$.''
+For such ordered alphabets, there is the important notion of {\em
+lexicographic order,}\index{lexicographic order}
+which is a total order on $\Sigma^\star$.  Given any two words from
+$\Sigma^\star$,
+\[ x = \sigma'_1 \sigma'_2 \cdots \sigma'_k \ \ \mbox{ and } \ \
+y = \sigma''_1 \sigma''_2 \cdots \sigma''_\ell,
+\]
+we say that $x$ {\em precedes} $y$ {\em in lexicographic order}
+precisely when one of the following holds:
+\begin{itemize}
+\item
+$x$ is a {\em proper prefix}\index{proper prefix}
+of $y$ (meaning that $y = xz$ for some nonnull $z \in \Sigma^\star$);
+\item
+there exists an index $i \leq \min(k, \ell)$ such that
+  \begin{itemize}
+  \item
+$\sigma'_j = \sigma''_j$ for all $j < i$
+  \item
+$\sigma'_i < \sigma''_i$ in the extrinsic order on $\Sigma$.
+  \end{itemize}
+\end{itemize}
+\end{quote}
+A {\bf language\index{language}
+over} the alphabet $\Sigma$ is {\em any} subset $L \subseteq
+\Sigma^\star$.
+\begin{quote}
+A language $L$ over $\Sigma$ can be as ``small'' as $\emptyset$ or as
+``big'' as $\Sigma^\star$, since, being a set, $L$ satisfies
+\[ \emptyset \ \subseteq \ L \ \subseteq \ \Sigma^\star. \]
+\end{quote}
+We denote by $\ell(w)$\index{$\ell(w)$: length of word $w$}\index{length of word $w$ ($\ell(w)$)}
+the {\em length}\index{length of word $w$ ($\ell(w)$)}
+of the word $w \in \Sigma^\star$.  Hence, $\ell(\varepsilon) = 0$, and
+$\ell(w) = k$ for all $w \in \Sigma^k$.
+
+The {\em concatenation}\index{concatenation!of words}
+of words $x \in \Sigma^\star$ and $y \in \Sigma^\star$, which we
+denote by juxtaposition of $x$ and $y$---namely, $xy$---is obtained by
+appending the string $y$ after the string $x$.  For instance, given
+two strings $x = 01001$ and $y = 110111$ over the alphabet $\{ 0,1\}$,
+the concatenation of $x$ and $y$ is the string $xy = 01001110111$.
+Occasionally---but only occasionally---for emphasis, we actually
+insert an operation symbol to denote concatenation, by writing $x
+\cdot y$ in place of $xy$.
+\begin{quote}
+The operation of concatenation is often called the {\em complex
+  product} within an algebraic setting.  In our context, the
+underlying algebra is the so-called {\em free semigroup}\index{free semigroup}
+over the alphabet $\Sigma$, which is just an esoteric way of talking
+about the semigroup of words over $\Sigma$, viewing concatenation as a
+type of multiplication.
+\end{quote}
+The operation of concatenation is 
+{\em associative},\index{associative (operation)}
+which means that for all strings $x$, $y$, and $z$ from
+$\Sigma^\star$, we have
+\[ x \cdot (y \cdot z) \ = \ (x \cdot y) \cdot z. \]
+We leave the inductive argument that establishes this fact to the reader.
+\begin{quote}
+Associativity allows us to write long expressions without
+parentheses.  We have been doing this ``forever'' with binary
+operations such as addition and multiplication.  We are now just
+noting that we can do this also with this new, string-oriented, type
+of multiplication.
+\end{quote}
+
+Equivalence relations on $\Sigma^\star$, specifically
+``right-invariant'' ones, cast a broad shadow in the theory.
+
+An equivalence relation $\equiv$ on $\Sigma^\star$ is {\bf
+  right-invariant}\index{equivalence relation!right-invariant}
+if for all $z \in \Sigma^\star$, $[xz \equiv yz]$ whenever $[x \equiv
+  y]$.
+
+Two simple examples illustrate right-invariance.  (1) Consider first
+the finest equivalence relation $\equiv_1$, namely, equality:
+\[ [x \equiv_1 y] \ \mbox{ if and only if } \ [x=y].  \]
+This relation is right-invariant because if $x$ and $y$ are identical,
+then appending the same string $z$ to both leaves you with identical
+strings, $xz$ and $yz$.  (2) Consider next the equivalence relation
+$\equiv_2$ that ``identifies'' binary strings that have the same
+number of $1$'s:
+\[ [x \equiv_2 y] \ \mbox{ if and only if the number of $1$'s in $x$
+  equals the the number of $1$'s in $y$} 
+\]
+(You should prove that $\equiv_2$ is indeed an equivalence relation.)
+This relation is right-invariant because if $x$ and $y$ share the same
+number of $1$'s, then so also do $xz$ and $yz$, no matter what string
+$z$ is.
+
+A major focus in our development of the theory will be the following
+specific right-invariant equivalence relation on $\Sigma^\star$, which
+is defined in terms of a given language $L \subseteq \Sigma^\star$:\index{$\equiv_L$}
+\begin{equation}
+\label{e.equiv-sub-L}
+\mbox{For all } x, y \in \Sigma^\star: \ \
+[x \equiv_L y] \ \mbox{ iff } \ (\forall z \in \Sigma^\star) [ [xz
+    \in L] \Leftrightarrow [yz \in L] ].
+\end{equation}
+
+The following important result is left as an exercise.
+
+\begin{lemma}
+\label{l.equiv-sub-L}
+For any alphabet $\Sigma$ and language $L \subseteq \Sigma^\star$, the
+equivalence relation $\equiv_L$ is right-invariant.
+\end{lemma}
+
+\subsection{Languages as Metaphors for Computational Problems}
+\label{s.language-metaphor}
+
+This section is devoted to an important example of how one can think
+about computations in nonobvious ways---a somewhat subtler instance of
+the {\bf conceptual axiom}\index{conceptual axiom}
+than we have observed to this point.
+
+Every language $L \subseteq \Sigma^\star$ has an associated function
+that allows us to step back and forth between the world of functions
+and the world of languages.
+\begin{quote}
+We may initially be a bit uncomfortable hopping in this way between
+formal notions that are quite unrelated in day-to-day discourse.
+However, the historical antecedents of computation theory more or less
+force us to, especially if we want access to primary sources in the
+development of the theory.
+\end{quote}
+
+The {\it characteristic function}\index{characteristic function}
+of the set/language $L$ is the function 
+$\kappa_L$\index{$\kappa_L$: characteristic function of language $L$}
+defined as follows:
+\[ (\forall x \in \Sigma^\star): \  \kappa_L(x) \ = \ \left\{
+\begin{array}{ll}
+1 & \mbox{if } \ x \in L, \\
+0 & \mbox{if } \ x \not\in L.
+\end{array} \right.
+\]
+Dually, every function $f: \Sigma^\star \rightarrow \{ 0,1 \}$ has an
+associated language $L_f$ defined as follows:
+\[ L_f \ = \ \{ x \in \Sigma^\star \ | \ f(x) = 1 \}. \]
+
+One can study a large range of computational issues involving
+two-valued functions by focusing on the languages associated with the
+functions; and one can study a large range of computational issues
+involving languages by focusing on the languages' characteristic
+functions.  One thus finds three distinct notions talked about
+interchangeably within the theory:
+\begin{enumerate}
+\item
+a {\em language} $L$;
+\item
+the {\em computational problem}: to compute $L$'s characteristic
+function;
+\item
+the {\em system property}: to decide, given $x \in \Sigma^\star$,
+whether $x \in L$.
+\end{enumerate}
+
+Interestingly, we shall encounter situations in which we shall be able
+to compute only $L$'s {\em semicharacteristic function}\index{semicharacteristic function}
+$\kappa'_L$,\index{$\kappa'_L$: semicharacteristic function of language $L$}
+which is a partial function that tells us when a given $x \in
+\Sigma^\star$ belongs to $L$ but gives no response when $x \notin L$:
+\[ (\forall x \in \Sigma^\star): \  \kappa'_L(x) \ = \ \left\{
+\begin{array}{l}
+1 \ \mbox{ if } \ x \in L, \\
+\mbox{undefined if } \ x \not\in L.
+\end{array} \right.
+\]
+Alan M.~Turing's\index{Turing, Alan M.}~world-changing demonstration
+of the existence of computational problems that cannot be solved
+algorithmically \cite{Turing36} in fact exhibited a language $L$ whose
+{\em semicharacteristic function} is computable but whose {\em
+  characteristic function} is not.
+
+A more concrete example of the duality between functions and languages
+involves an arbitrary function
+\begin{equation}
+\label{e.sample-g}
+g: \{ 0,1 \}^\star \times \{ 0,1 \}^\star \rightarrow \{ 0,1 \}^\star.
+\end{equation}
+(Think of $g$ as being addition or multiplication, for instance.)  One
+often studies the problem of computing $g$ via the following
+language-recognition problem.  We define the language\footnote{We
+  avoid the notation ``$L_g$'' to avoid any confusion with languages
+  and their characteristic functions.}~$L(g)$ as follows.  $L(g)$ is a
+language over the alphabet $\Sigma \eqdef \{ 0,1 \} \times \{ 0,1 \}$
+whose letters are {\em ordered pairs} of bits.  For each $n \in \N$,
+the $n$-letter word
+\[ \langle \alpha_0, \beta_0 \rangle \langle \alpha_1, \beta_1
+   \rangle \cdots \langle \alpha_{n-1}, \beta_{n-1} \rangle \]
+in $\Sigma^n$ belongs to the language $L(g)$ precisely when the $n$th
+bit of the bit-string 
+\[ g(\alpha_{n-1} \cdots \alpha_0, \ \beta_{n-1} \cdots \beta_0) \]
+is a $1$.
+\begin{quote}
+Note that we reverse the orders of bit-strings so that the index of a
+bit-position equals the power of $2$ that we use to convert the
+bit-string to an integer.  Using this notational convention, the
+bit-string $\alpha_{n-1} \cdots \alpha_0$ is the
+numeral\footnote{Recall that a {\em numeral\/} is the string-name
+for a number.}~for the integer $\sum_{i=0}^{n-1} \alpha_i 2^i$.
+\end{quote}
+*************}
+
+\section{Graphs and Trees}
+\label{s.graphs+trees}
+
+
+
+
+
+
+
+\ignore{**************
+\section{Exercises}
+
+\begin{enumerate}
+\item
+Prove that all three Boolean operations can be expressed using just
+the single operation set-difference.  In other words, find ways of
+expressing $\overline{S}$, $S \cap T$, and $S \cup T$ using only
+expressions of the form $S \setminus T$.
+
+\item
+Prove that the set $\Sigma^\star$ is infinite whenever $\Sigma$ is not
+empty.
+
+\item
+Prove Lemma~\ref{l.equiv-sub-L}: For all alphabets $\Sigma$ and all
+languages $L \subseteq \Sigma^\star$, the equivalence relation
+$\equiv_L$ is right-invariant.
+
+\item
+Prove in detail the fact alluded to in Section~\ref{s.equiv-rel}, that
+an equivalence relation on a set $S$ and a partition of $S$ are just
+two ways to look at the same notion.
+
+\item
+Prove that the composition of injections is an injection.
+
+\item
+Using first addition and then multiplication as the function in
+(\ref{e.sample-g}), present ten strings in the language $L_g$.
+\end{enumerate}
+*************}
+
+
+
+
+
+**TBD
+
+
+\subsection{Asymptotics}
+
+
+
+
+
+
+
+\end{document}
